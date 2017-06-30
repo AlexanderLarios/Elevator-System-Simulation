@@ -4,6 +4,8 @@
 #include <queue>
 using namespace std;
 int main() {
-	cout << "This is a github test" << endl;
+	
+	cout << "Welcome Elevator System Admin..." << endl;
+	cout << "Main Menu" << endl;
 	return 0;
 }
