@@ -1,33 +1,25 @@
 //Elevator.h
-
-#include Simulation.h
-#include User Interface.h
-//github test
+//Elevator class header.
 #pragma once
 
-//Elevator class header.
 class Elevator {
-public:
-Elevator() {}
+	
+private:
+	int currentFloor;
+	int que_count;
+	int direction;
+	int floors;
+	int defaultFloor;
+	
 
-Elevator(int floors_, int defaultFloor_);
-floorCalled(), direction(1)
-currentFloor(0),
-defaultFloor(floors), 
-process();
-//This moves the elevator  in the desired direction when the user pressed the button for the desired floor
-void gotoFloor(bool show_all);
- int getdefaultFloor() {
-  return defaultFloor;
-}
- 
- private: 
- int currentFloor;
- int que_count;
- int direction;
- int floors;
- int defaultFloor;
- queue <int> floor_Q;
- }
- 
+
+public:
+	Elevator(int floors_, int defaultFloor_);
+	void called();
+	void SetDefaultFloor(int defaultFloor_);
+	void process();
+	void gotoFloor(bool show_all);
+	int getDefaultFloor()
+
+};
 //Add definitions here
