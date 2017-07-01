@@ -10,12 +10,12 @@ class Elevator {
 public:
 Elevator() {}
 
-Elevator(int floors):
+Elevator(int floors, int defaultFloor);
 floorCalled(), direction(1)
 currentFloor(0),
 defaultFloor(floors), 
  
-//This moves the elevator  in the dsired direction when the user pressed the button for the desired floor
+//This moves the elevator  in the desired direction when the user pressed the button for the desired floor
 void gotoFloor(bool show_all) {
 if(buttonCalls.empty()) {
 return;
@@ -32,10 +32,11 @@ return;
  
  private: 
  int currentFloor;
+ int que_count;
  bool direction;
  int levels;
- int defaultFloor1;
- int defaultFloor2;
- int defaultFloor3;
+ 
+
+ }
  
 //Add definitions here
