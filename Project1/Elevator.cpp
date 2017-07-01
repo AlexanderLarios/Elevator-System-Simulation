@@ -1,7 +1,7 @@
 // Elevator.cpp
 // Elevator class 
 #include "Elevator.h"
-
+//cpp Pull request
 Elevator :: Elevator(int floors_, int defaultFloor_){
 	floors = floors_;
 	defaultFloor = defaultFloor_;
@@ -14,7 +14,6 @@ void Elevator:: Elevator floorCalled(int floor_, int direction_){
 		{
 			floor_Q.push(floor_);
 		}
-
 }
 
 void Elevator:: Elevator dropoff(){
