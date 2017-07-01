@@ -10,22 +10,13 @@ class Elevator {
 public:
 Elevator() {}
 
-Elevator(int floors, int defaultFloor);
+Elevator(int floors_, int defaultFloor_);
 floorCalled(), direction(1)
 currentFloor(0),
 defaultFloor(floors), 
- 
+process();
 //This moves the elevator  in the desired direction when the user pressed the button for the desired floor
-void gotoFloor(bool show_all) {
-if(buttonCalls.empty()) {
-return;
-}  
-
-
-  if (show) {
-   cout << "The elevator has made its PICKUP" << endl;
-  }
-}
+void gotoFloor(bool show_all);
  int getdefaultFloor() {
   return defaultFloor;
 }
@@ -33,10 +24,10 @@ return;
  private: 
  int currentFloor;
  int que_count;
- bool direction;
- int levels;
- 
-
+ int direction;
+ int floors;
+ int defaultFloor;
+ queue <int> floor_Q;
  }
  
 //Add definitions here
