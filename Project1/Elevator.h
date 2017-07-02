@@ -15,6 +15,20 @@ floorCalled(), direction(1)
 currentFloor(0),
 defaultFloor(floors), 
 process();
+
+// This is used to go up and down the current/default floor
+void defaultFloor(bool pickUp, bool show) {
+if (up) {
+currentFloor++;
+}
+else {
+currentFLoor--;
+direction = up;
+if(show) {
+currentFLoor;
+}
+}
+ 
 //This moves the elevator  in the desired direction when the user pressed the button for the desired floor
 void gotoFloor(bool show_all);
  int getdefaultFloor() {
