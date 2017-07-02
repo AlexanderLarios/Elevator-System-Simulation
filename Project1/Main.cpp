@@ -1,7 +1,7 @@
 //Main.cpp
 //CS303 Project 1 
 #include <iostream>
-#include <queue>
+#include <vector>
 #include <string>
 #include <sstream>
 #include "Elevator.h"
@@ -35,7 +35,7 @@ void floorSelection(int floor) {
 */
 //Global variables
 
-
+vector<int> floors;
 //Main loop
 int main()
 {

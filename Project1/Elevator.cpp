@@ -2,33 +2,36 @@
 // Elevator class 
 #include "Elevator.h"
 //cpp Pull request
-Elevator :: Elevator(int floors_, int defaultFloor_){
+Elevator::Elevator(int floors_, int defaultFloor_, &vector<int> floors_ ) 
+{
 	floors = floors_;
 	defaultFloor = defaultFloor_;
 	currentFloor = defaultFloor_;
 	direction = -1;
 }
-
-void Elevator:: Elevator floorCalled(int floor_, int direction_){
+int Elevator:: getDefaultFloor() {
+	return defaultFloor;
+}
+void Elevator::called(int floor_, int direction_){
 	if(direction_ == direction)
 		{
 			floor_Q.push(floor_);
 		}
 }
 
-void Elevator:: Elevator dropoff(){
+void Elevator::dropoff(){
 	if(currentFloor == floor_Q.front()){floor_Q.pop();}
 }
 
-void Elevator:: Elevator  up(){
+void Elevator::up(){
 	currentFloor++;
 }
 
-void Elevator:: Elevator  down(){
+void Elevator::down(){
 	currentFloor--;
 }
 
-void Elevator:: Elevator goto(int Floor){
+void Elevator::goto(int Floor){
 
 	if(buttonCalls.empty()) {
 		return;
