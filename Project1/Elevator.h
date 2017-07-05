@@ -19,7 +19,7 @@ public:
 	void SetDefaultFloor(int defaultFloor_);
 	void process();
 	void gotoFloor(bool show_all);
-	int getDefaultFloor()
+	int getDefaultFloor();
 
 };
 //Add definitions here
