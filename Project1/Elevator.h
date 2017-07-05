@@ -15,11 +15,13 @@ private:
 
 public:
 	Elevator(int floors_, int defaultFloor_);
-	void called();
+	void called(int floor_, int direction_);
 	void SetDefaultFloor(int defaultFloor_);
+	void dropOff();
 	void process();
-	void gotoFloor(bool show_all);
+	void goToFloor(int floor_);
+	void up();
+	void down();
 	int getDefaultFloor();
 
 };
-//Add definitions here
