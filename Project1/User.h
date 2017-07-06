@@ -1,4 +1,7 @@
-#include "elevator.h"
+// User.h
+// CS303 Project 1
+
+#include "Elevator.h"
 
 struct User{
 public:
