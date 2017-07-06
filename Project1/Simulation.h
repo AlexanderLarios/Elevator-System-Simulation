@@ -10,5 +10,5 @@ public:
   int MaxTurn;
   double Frequency;
 
- void Elevator :: Simulation (int elevatorFloor, int MaxTurns, double Frequency);
+ void Simulation :: Simulation (int elevatorFloor, int MaxTurns, double Frequency);
 }
