@@ -1,3 +1,6 @@
+// Simulator.h
+// CS303 Project 1
+
 #include "Elevator.h"
 #include <iostream>
 
