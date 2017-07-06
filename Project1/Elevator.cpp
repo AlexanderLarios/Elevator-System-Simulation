@@ -52,15 +52,30 @@ int Elevator::getVectorCount(bool direction_) {
 }
 //called by sim interface. adds pick up request to directional vector
 void Elevator::called(int floor_, int direction_){
-	if(direction_ ==1){
+	if(direction_ ==1 && floor > currentFloor){ //what if the direction is the same but the floor is behind the current floor?!?!? 
 		upVector.push_back(floor_);
+		upVectorSort();
 		}
-	else if (direction_ ==-1){
+	else if (direction_ == 1 && floor < currentFloor){
+		//wait to add to vector once eleveator is under the floor going up
+		}
+	else if (direction_ ==-1 && floor < currentFloor){
 		downVector.push_back(floor_);
+		downVectorSort();
+		}
+	else if (direction_ ==-1 && floor > currentFloor){
+		//wait to add once starting going up once above the floor going down
 		}
 
 }
+void Elevator :: upVectorSort(){
+	upVector.sort();
+}
 
+void Elevator :: downVectorSort(){
+	downVector.sort();
+	downVector.reverse();
+}
 //if floor is destination it pops floor from vector and sends Open door /Drop off to sim
 //This function requires sorted vectors to function properly*****
 bool Elevator::dropOff(){
