@@ -3,21 +3,15 @@
 
 using namespace std;
 
-class Simulation{
-
+class Simulation 
+{
 public:
-int floors;
-int MaxTurns;
- 
-Simulator (int levels, int choice)
-Elevator (floors, arrival);
+  int elevatorFloor;
+  int MaxTurn;
+  double Frequency;
 
-void run_simulation();
-void moveElevator();
-
-private:
-void Simulation:: run_simulation(){
+ void Elevator :: Simulation (int elevatorFloor, int MaxTurns, double Frequency)
+ {  
+     Simulator (int MaxTurns, double Frequency);
+ }
 }
-void Simulation::moveElevator(){
-}
-
