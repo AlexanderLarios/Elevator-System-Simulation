@@ -1,3 +1,6 @@
+// Simulation.h 
+// CS303 Project 1
+
 #include "Simulator.h"
 
 
