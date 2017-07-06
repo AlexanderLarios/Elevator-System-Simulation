@@ -10,8 +10,5 @@ public:
   int MaxTurn;
   double Frequency;
 
- void Elevator :: Simulation (int elevatorFloor, int MaxTurns, double Frequency)
- {  
-     Simulator (int MaxTurns, double Frequency);
- }
+ void Elevator :: Simulation (int elevatorFloor, int MaxTurns, double Frequency);
 }
