@@ -50,6 +50,7 @@ public:
 	//Moves elevator down a floor
 	void moveDown();
 	void open();
-
+	//void Elevator :: upVectorSort()
+	//void Elevator :: downVectorSort()
 
 };
