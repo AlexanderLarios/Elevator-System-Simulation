@@ -3,9 +3,9 @@
 struct User{
 public:
 User(){};
-User(bool dropoff, bool direction, int defaultFloor, int currentFloor);
-int startFloor;
-int endFloor;
+User(int direction_, int defaultFloor, int finalFloor);
+int defaultFloor;
+int finalFloor;
 int direction;
 bool pickedUp;
 };
