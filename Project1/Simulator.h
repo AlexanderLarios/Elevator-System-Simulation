@@ -6,7 +6,9 @@ using namespace std;
 class Simulation{
 
 public:
-
+int floors;
+int MaxTurns;
+ 
 Simulator (int levels, int choice)
 Elevator (floors, arrival);
 
