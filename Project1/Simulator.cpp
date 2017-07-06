@@ -4,7 +4,9 @@
 #include "Simulator.h"
 
 
- void Elevator :: Simulation (int elevatorFloor, int MaxTurns, double Frequency)
+ void Simulation :: Simulation (int elevatorFloor_, int MaxTurns_, double Frequency_)
  {  
-     Simulator (int MaxTurns, double Frequency);
+    elevatorFloor = elevatorFloor_;
+    MaxTurns = MaxTurns_;
+    Frequency = Frequency_;
  }
