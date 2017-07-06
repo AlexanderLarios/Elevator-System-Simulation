@@ -8,7 +8,7 @@ int levels;
 int currentFloor;
 int direction;
 int defaultFloor;
-
+bool pickedUp;
 };
 
 
