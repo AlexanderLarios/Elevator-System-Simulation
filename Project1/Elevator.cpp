@@ -54,26 +54,35 @@ bool Elevator::checkFloor(list<int>& directionList){
 
 //if floor is destination it pops the int floor from list and sends Open door /Drop off to sim
 bool Elevator::dropOff(){
-	if (direction == 1 && currentFloor == upList.back){
-		upList.pop_back;
-		/*
-		std::list<int>::iterator it = listOfInts.begin();
-		while (it != listOfInts.end()) {
+	if (direction == 1 ){
+		std::list<int>::iterator it = upList.begin();
+		while (it != upList.end()) {
 		// Remove elements while iterating
-		if ((*it) % 3 == 0) {
+		if ((*it) == currentFloor) {
 		// erase() makes the passed iterator invalid
 		// But returns the iterator to the next of deleted element
-		it = listOfInts.erase(it);
+		it = upList.erase(it);
+		return true;
 		} else
 		it++;
 		}
-		*/
-		return true;
-	}
-	else if (direction == -1 && currentFloor == downList.back) {
-		downList.pop_back;
+		return false;
 		
-		return true;
+	}
+	else if (direction == -1) {
+		std::list<int>::iterator it = downList.begin();
+		while (it != downList.end()) {
+			// Remove elements while iterating
+			if ((*it) == currentFloor) {
+				// erase() makes the passed iterator invalid
+				// But returns the iterator to the next of deleted element
+				it = downList.erase(it);
+				return true;
+			}
+			else
+				it++;
+		}
+		return false;
 	}
 	else 
 		return false;
