@@ -1,7 +1,7 @@
 //Main.cpp
 //CS303 Project 1 
 #include <iostream>
-#include <vector>
+#include <list>
 #include <string>
 #include <sstream>
 #include "Elevator.h"

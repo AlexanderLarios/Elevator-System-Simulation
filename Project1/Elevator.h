@@ -2,18 +2,18 @@
 //Elevator class header.
 //Declare that.
 #pragma once
-#include <vector>
+#include <list>
+#include <iterator>
+using namespace std;
 class Elevator {
 	
 private:
-	//vectors for up and down
-	std::vector<int> upVector;
-	std::vector<int> downVector;
+	//Lists for up and down
+	std::list<int> upList;
+	std::list<int> downList;
 	// more members
 	int defaultFloor=1;
 	int currentFloor=1;
-	int vectorCountUp=0;
-	int vectorCountDown=0;
 	int direction=0;
 	int floors;
 	
@@ -35,10 +35,6 @@ public:
 	int setDirection(int direction_);
 	//Change default floor
 	void SetDefaultFloor(int defaultFloor_);
-	//Set number of destinations. Choose 1 for up, 0 for down.
-	void setVectorCount(bool direction_, int VectorCount_);
-	//get number of destinations in vector. Choose 1 for up, 0 for down.
-	int getVectorCount(bool direction_);
 	//called to check if floor is a destination
 	bool dropOff();
 	// logic run by elevator when it reaches a new floor or when released from idle
@@ -50,7 +46,10 @@ public:
 	//Moves elevator down a floor
 	void moveDown();
 	void open();
-	//void Elevator :: upVectorSort()
-	//void Elevator :: downVectorSort()
+	//
+	bool checkUkUp(list<int>& upList_);
+	bool checkUkDown(list<int>& downList_);
+	bool checkFloor(list<int>& directionList);
+	
 
 };
