@@ -45,13 +45,13 @@ void Elevator::called(int floor_, int direction_){
 
 //if floor is destination it pops the int floor from list and sends Open door /Drop off to sim
 bool Elevator::dropOff(){
-	if (direction == 1 && currentFloor == upVector.back){
-		upVector.pop_back;
+	if (direction == 1 && currentFloor == upList.back){
+		upList.pop_back;
 		
 		return true;
 	}
-	else if (direction == -1 && currentFloor == downVector.back) {
-		downVector.pop_back;
+	else if (direction == -1 && currentFloor == downList.back) {
+		downList.pop_back;
 		
 		return true;
 	}
@@ -77,8 +77,29 @@ void Elevator::goToFloor(int floor_) {
 		downList.push_back(floor_);
 	}
 }
+//allows sims to get out. have not created them yet though.
 void Elevator::open() {
-	//allows sims to get out. have not created them yet though.
+	
+}
+//Checks to see if Uk > 0 for upList and inverse for Down List
+bool Elevator::checkUkUp(list<int>& upList_) {
+	for (list<int>::iterator it = upList_.begin(); it != upList_.end(); ++it) {
+		if (*it > currentFloor) {
+			return true;
+		}
+	}
+	return false;
+	
+}
+
+bool Elevator::checkUkDown(list<int>& downList_) {
+	for (list<int>::iterator it = downList_.begin(); it != downList_.end(); ++it) {
+		if (*it < currentFloor) {
+			return true;
+		}
+	}
+	return false;
+
 }
 // logic run by elevator when it reaches a new floor or when released from idle
 void Elevator::process(){
