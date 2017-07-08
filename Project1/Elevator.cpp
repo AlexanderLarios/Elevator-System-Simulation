@@ -32,52 +32,18 @@ int Elevator::setDirection(int direction_) {
 	direction = direction_;
 }
 
-//Set number of destinations. Choose 1 for up, 0 for down.
-void Elevator::setVectorCount(bool direction_, int VectorCount_) {
-	if (direction_) {
-		vectorCountUp = VectorCount_;
-	}
-	else {
-		vectorCountDown = VectorCount_;
-	}
-}
-//get number of destinations in vector. Choose 1 for up, 0 for down.
-int Elevator::getVectorCount(bool direction_) {
-	if (direction_) {
-		return vectorCountUp;
-	}
-	else {
-		return vectorCountDown;
-	}
-}
 //called by sim interface. adds pick up request to directional vector
 void Elevator::called(int floor_, int direction_){
-	if(direction_ ==1 && floor > currentFloor){ //what if the direction is the same but the floor is behind the current floor?!?!? 
-		upVector.push_back(floor_);
-		upVectorSort();
+	if(direction_ ==1){
+		upList.push_back(floor_);
 		}
-	else if (direction_ == 1 && floor < currentFloor){
-		//wait to add to vector once eleveator is under the floor going up
-		}
-	else if (direction_ ==-1 && floor < currentFloor){
-		downVector.push_back(floor_);
-		downVectorSort();
-		}
-	else if (direction_ ==-1 && floor > currentFloor){
-		//wait to add once starting going up once above the floor going down
+	else if (direction_ ==-1){
+		downList.push_back(floor_);
 		}
 
 }
-void Elevator :: upVectorSort(){
-	upVector.sort();
-}
 
-void Elevator :: downVectorSort(){
-	downVector.sort();
-	downVector.reverse();
-}
-//if floor is destination it pops floor from vector and sends Open door /Drop off to sim
-//This function requires sorted vectors to function properly*****
+//if floor is destination it pops the int floor from list and sends Open door /Drop off to sim
 bool Elevator::dropOff(){
 	if (direction == 1 && currentFloor == upVector.back){
 		upVector.pop_back;
@@ -105,10 +71,10 @@ void Elevator::moveDown(){
 //add floor as a destination accessed by sim interface inside car.
 void Elevator::goToFloor(int floor_) {
 	if (floor_ > currentFloor) {
-		upVector.push_back(floor_);
+		upList.push_back(floor_);
 	}
 	else {
-		downVector.push_back(floor_);
+		downList.push_back(floor_);
 	}
 }
 void Elevator::open() {
@@ -117,7 +83,7 @@ void Elevator::open() {
 // logic run by elevator when it reaches a new floor or when released from idle
 void Elevator::process(){
 	//If the elevator is idle return it to its default floor
-	if(upVector.empty() && downVector.empty()) {
+	if(upList.empty() && downList.empty()) {
 		if(currentFloor == defaultFloor){
 			direction = 0;
 		}
@@ -136,10 +102,10 @@ void Elevator::process(){
 		open();
 	}
 	else {
-		if(!upVector.empty()&& direction ==1){
+		if(!upList.empty()&& direction ==1){
 			moveUp();
 		}
-		else if (!downVector.empty() && direction == -1) {
+		else if (!downList.empty() && direction == -1) {
 			moveDown();
 		}
 		else{
