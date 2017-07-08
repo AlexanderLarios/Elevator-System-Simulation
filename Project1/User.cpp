@@ -3,6 +3,6 @@
 User :: User(int direction_, int defaultFloor, int finalFloor){
     startFloor = defaultFloor;
     endFloor = finalFloor;
-    direction = direction_;
+    direction = direction;
     pickedUp = false;
 }
