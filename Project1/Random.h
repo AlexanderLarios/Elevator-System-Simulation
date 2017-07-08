@@ -30,8 +30,15 @@ public:
 
 
 int current_floor;
-current_floor=int(std::)
+current_floor=int(std::random()%nfloor_num);
 return current_floor;
-
-
+	 
+while (equal) {
+default_floor=random()% nfloor_num;
+if (current_floor !=default_floor) {
+equal = false;
+	
+}	
+}
+return default floor;
 };
