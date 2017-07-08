@@ -42,6 +42,15 @@ void Elevator::called(int floor_, int direction_){
 		}
 
 }
+bool Elevator::checkFloor(list<int>& directionList){
+	for (list<int>::iterator it = directionList.begin(); it != directionList.end(); ++it) {
+		if (*it == currentFloor) {
+			
+			return true;
+		}
+	}
+	return false;
+}
 
 //if floor is destination it pops the int floor from list and sends Open door /Drop off to sim
 bool Elevator::dropOff(){
@@ -81,7 +90,7 @@ void Elevator::goToFloor(int floor_) {
 void Elevator::open() {
 	
 }
-//Checks to see if Uk > 0 for upList and inverse for Down List
+//Checks to see if Uk > 0 for upList
 bool Elevator::checkUkUp(list<int>& upList_) {
 	for (list<int>::iterator it = upList_.begin(); it != upList_.end(); ++it) {
 		if (*it > currentFloor) {
@@ -91,7 +100,7 @@ bool Elevator::checkUkUp(list<int>& upList_) {
 	return false;
 	
 }
-
+//Checks to see if Uk < 0 for Down List
 bool Elevator::checkUkDown(list<int>& downList_) {
 	for (list<int>::iterator it = downList_.begin(); it != downList_.end(); ++it) {
 		if (*it < currentFloor) {
@@ -123,10 +132,10 @@ void Elevator::process(){
 		open();
 	}
 	else {
-		if(!upList.empty()&& direction ==1){
+		if(direction == 1 && checkUkUp){
 			moveUp();
 		}
-		else if (!downList.empty() && direction == -1) {
+		else if (direction == -1 && checkUkDown) {
 			moveDown();
 		}
 		else{

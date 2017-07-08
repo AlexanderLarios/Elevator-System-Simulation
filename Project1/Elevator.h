@@ -3,6 +3,8 @@
 //Declare that.
 #pragma once
 #include <list>
+#include <iterator>
+using namespace std;
 class Elevator {
 	
 private:
@@ -45,6 +47,9 @@ public:
 	void moveDown();
 	void open();
 	//
+	bool checkUkUp(list<int>& upList_);
+	bool checkUkDown(list<int>& downList_);
+	bool checkFloor(list<int>& directionList);
 	
 
 };
