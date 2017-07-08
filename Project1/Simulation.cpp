@@ -15,15 +15,18 @@ void Simulation :: Simulate ()
 {  int turns = 0;
    while(turns < MaxTurns)
    {  //random number to generate a new user
-      New User();
+      User theUser = new User;
+    
      
      //random numbers to generate starting and ending floors
       int start;
       int end;
       
+    //assign random numbers to the user
+      theUser(int direction_, int defaultFloor, int finalFloor);
     
-     
-      Elevator.process(); 
+    //send the user info to the elevator to be processed
+      Elevator.process(theUser); 
        turns++;
    }
 }
