@@ -22,6 +22,7 @@ bool Simulation :: genuser ()
     Passengers.push_back(User(start, end));
    }
 }
+
 void Simulation :: Simulate ()
 {  int turns = 0;
    while(turns < MaxTurns)
