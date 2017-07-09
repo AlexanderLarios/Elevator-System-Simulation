@@ -108,7 +108,11 @@ void Elevator::goToFloor(int floor_) {
 }
 //allows sims to get out. have not created them yet though.
 void Elevator::open() {
-	
+	/*
+	return bool to simulator
+		true if 
+	*/
+	//process()
 }
 //Checks to see if Uk > 0 for upList
 bool Elevator::checkUkUp(list<int>& upList_) {
@@ -132,6 +136,15 @@ bool Elevator::checkUkDown(list<int>& downList_) {
 }
 // logic run by elevator when it reaches a new floor or when released from idle
 void Elevator::process(){
+	/*int process
+	return int currentFloor //gives simulate a int to use to match with 
+	2 containters: Lobby & Elevator
+	
+	//dropoff => return the user to process to get time waited
+	
+	
+	
+	*/
 	//If the elevator is idle return it to its default floor
 	if(upList.empty() && downList.empty()) {
 		if(currentFloor == defaultFloor){
