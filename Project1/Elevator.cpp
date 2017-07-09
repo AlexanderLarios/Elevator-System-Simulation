@@ -106,11 +106,7 @@ void Elevator::goToFloor(int floor_) {
 		downList.push_back(floor_);
 	}
 }
-//allows sims to get out. have not created them yet though.
-int Elevator::open() {
-	return floor, direction;
-	
-}
+
 //Checks to see if Uk > 0 for upList
 bool Elevator::checkUkUp(list<int>& upList_) {
 	for (list<int>::iterator it = upList_.begin(); it != upList_.end(); ++it) {
@@ -131,8 +127,12 @@ bool Elevator::checkUkDown(list<int>& downList_) {
 	return false;
 
 }
+//allows sims to get out. have not created them yet though.
+int Elevator::open() {
+	return floor, direction;	
+}
 // logic run by elevator when it reaches a new floor or when released from idle
-void Elevator::process(){
+int Elevator::process(){
 	//If the elevator is idle return it to its default floor
 	if(upList.empty() && downList.empty()) {
 		if(currentFloor == defaultFloor){
