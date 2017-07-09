@@ -107,7 +107,7 @@ void Elevator::goToFloor(int floor_) {
 	}
 }
 //allows sims to get out. have not created them yet though.
-void Elevator::open() {
+int Elevator::open() {
 	return floor, direction;
 	
 }
