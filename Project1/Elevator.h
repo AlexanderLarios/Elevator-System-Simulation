@@ -45,7 +45,7 @@ public:
 	void moveUp();
 	//Moves elevator down a floor
 	void moveDown();
-	void open();
+	int open();
 	//
 	bool checkUkUp(list<int>& upList_);
 	bool checkUkDown(list<int>& downList_);
