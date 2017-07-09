@@ -4,14 +4,32 @@
 #include "Simulator.h"
 #include "Random"
 /*
+int timeWaited(){
+
+}
+*/
+/*
+//
 newFunction(){
   currentFloor = E1.getcurrentFloor;
   direction = E1.getDirection;
-  if(pickup())
+  if(open() == true && pickup()== true && direction == 1)
   {
-     
+    for (list<int>::iterator it = upList_.begin(); it != upList_.end(); ++it) {
+		if (*it > currentFloor) {
+			return true;
+		}
+	}
   }
-  else
+  else if(open() == true && pickup()== true && direction == -1)
+  {
+    for (list<int>::iterator it = upList_.begin(); it != upList_.end(); ++it) {
+		if (*it > currentFloor) {
+			return true;
+		}
+	}
+  }
+  
   
 }
 */
