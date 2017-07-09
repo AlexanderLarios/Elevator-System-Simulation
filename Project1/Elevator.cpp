@@ -108,6 +108,7 @@ void Elevator::goToFloor(int floor_) {
 }
 //allows sims to get out. have not created them yet though.
 void Elevator::open() {
+	return floor, direction;
 	
 }
 //Checks to see if Uk > 0 for upList
