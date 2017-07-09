@@ -35,6 +35,23 @@ void Simulation :: Simulate ()
       turns++;
    }
 }
+int defaultfloor(intnum_floors){    
+
+ 
+current_floor=int(std::random()%chance to spawn user);
+return current_floor;  
+
+while (equal) {default_floor=random()% nfloor_num;
+if (current_floor !=default_floor) {
+equal = false; 
+} 
+int currentfloor;  
+bool equal = true;  
+int current_floor;
+return default floor;
+
+}
+ return current floor;};
 /*
 void Simulation :: Simulate ()
 {  int turns = 0;
