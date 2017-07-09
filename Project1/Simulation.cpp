@@ -4,7 +4,16 @@
 #include "Simulator.h"
 #include "Random"
 /*
-
+newFunction(){
+  currentFloor = E1.getcurrentFloor;
+  direction = E1.getDirection;
+  if(pickup())
+  {
+     
+  }
+  else
+  
+}
 */
  void Simulation :: Simulation (int elevatorFloor_, int MaxTurns_, double Frequency_)
  {  
