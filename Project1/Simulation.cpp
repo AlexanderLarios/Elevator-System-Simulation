@@ -14,15 +14,12 @@ bool Simulation :: genuser ()
 {    //Generate a new user
    if(rand() % (1 - 0 + 1)) == 1)
    {
-      User theUser = new User;
-      
-    
      //random numbers to generate starting and ending floors
       int start = int(std::random()%nfloor_num);
       int end = int(std::random()%nfloor_num);
     
     //pushback user contructor into the list container
-    theUser.User();
+    Passengers.push_back(User(start, end));
    }
 }
 void Simulation :: Simulate ()
