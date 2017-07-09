@@ -3,7 +3,36 @@
 
 #include "Simulator.h"
 #include "Random"
+/*
+int timeWaited(){
 
+}
+*/
+/*
+//
+newFunction(){
+  currentFloor = E1.getcurrentFloor;
+  direction = E1.getDirection;
+  if(open() == true && pickup()== true && direction == 1)
+  {
+    for (list<int>::iterator it = upList_.begin(); it != upList_.end(); ++it) {
+		if (*it > currentFloor) {
+			return true;
+		}
+	}
+  }
+  else if(open() == true && pickup()== true && direction == -1)
+  {
+    for (list<int>::iterator it = upList_.begin(); it != upList_.end(); ++it) {
+		if (*it > currentFloor) {
+			return true;
+		}
+	}
+  }
+  
+  
+}
+*/
  void Simulation :: Simulation (int elevatorFloor_, int MaxTurns_, double Frequency_)
  {  
     elevatorFloor = elevatorFloor_;
@@ -17,9 +46,18 @@ bool Simulation :: genuser ()
      //random numbers to generate starting and ending floors
       int start = int(std::random()%floors);
       int end = int(std::random()%floors);
+      if(start < end){
+        direction = 1 ;
+       }
+    else {
+        direction = -1;
+         }
     
     //pushback user contructor into the list container
-    Passengers.push_back(User(start, end));
+    Passengers.push_back(User(start, end, direction));
+    
+    //
+    Elevator.called(start, direction);
    }
 }
 
