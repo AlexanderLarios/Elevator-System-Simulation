@@ -19,4 +19,6 @@ public:
 private:
   int clock;
   Elevator elevator;
+  std::list<User> simPassangers;
+  
 }
