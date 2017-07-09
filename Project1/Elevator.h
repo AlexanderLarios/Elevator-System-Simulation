@@ -46,7 +46,7 @@ public:
 	bool dropOff();
 	
 	// logic run by elevator when it reaches a new floor or when released from idle
-	int process();
+	bool process();
 	
 	//add floor as a destination
 	void goToFloor(int floor_);
