@@ -25,15 +25,13 @@ bool Simulation :: genuser ()
 void Simulation :: Simulate ()
 {  int turns = 0;
    while(turns < MaxTurns)
-   { if(genuser()){
+   { genuser();
     
     //send the user info to the elevator to be processed
-      Elevator.process(); 
+     Elevator.process(); 
     
     //Increment the number of turns
-      turns++;}
-    else
-     turns++;
+      turns++;
    }
 }
 
