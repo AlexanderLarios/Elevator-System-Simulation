@@ -1,6 +1,6 @@
 #include "User.h"
 
-User :: User(int direction_, int defaultFloor, int finalFloor){
+User :: User(int defaultFloor, int finalFloor){
     startFloor = defaultFloor;
     endFloor = finalFloor;
     pickedUp = false;
