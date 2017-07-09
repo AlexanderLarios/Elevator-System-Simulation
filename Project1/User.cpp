@@ -1,13 +1,8 @@
 #include "User.h"
 
-User :: User(int defaultFloor, int finalFloor){
+User :: User(int defaultFloor, int finalFloor, int direction_){
     startFloor = defaultFloor;
     endFloor = finalFloor;
     pickedUp = false;
-    if(defaultFloor < finalFloor){
-    direction = 1 ;
-    }
-    else 
-        direction = -1;
-    
+    direction = direction_;
 }
