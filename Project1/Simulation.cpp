@@ -13,7 +13,8 @@
 void Simulation :: Simulate ()
 {  int turns = 0;
    while(turns < MaxTurns)
-   {  //Generate a new user
+   {  //Generate a new user: Needs a percent chance function!!!
+    //genUser();
       User theUser = new User;
     
      //random numbers to generate starting and ending floors
@@ -25,11 +26,12 @@ void Simulation :: Simulate ()
      if(end-start > 0) direction_ = 1;
      else direction_ = -1;
     
+    //E1.call(newuser.getStartfloor, newuser.getDirection)
     //assign random numbers to the user
       theUser(direction_, start, end);
     
     //send the user info to the elevator to be processed
-      Elevator.process(theUser); 
+      Elevator.process(); 
     
     //Increment the number of turns
       turns++;
