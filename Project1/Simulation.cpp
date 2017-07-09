@@ -10,71 +10,29 @@
     MaxTurns = MaxTurns_;
     Frequency = Frequency_;
  }
+bool Simulation :: genuser ()
+{    //Generate a new user
+   if(rand() % (2)) == 0)
+   {
+     //random numbers to generate starting and ending floors
+      int start = int(std::random()%floors);
+      int end = int(std::random()%floors);
+    
+    //pushback user contructor into the list container
+    Passengers.push_back(User(start, end));
+   }
+}
+
 void Simulation :: Simulate ()
 {  int turns = 0;
    while(turns < MaxTurns)
-   {  //Generate a new user
-      User theUser = new User;
-    
-     //random numbers to generate starting and ending floors
-      int start = random();
-      int end = random();
-    
-    //determine direction from rand nums
-    int direction_;
-     if(end-start > 0) direction_ = 1;
-     else direction_ = -1;
-    
-    //assign random numbers to the user
-      theUser(direction_, start, end);
+   { genuser();
     
     //send the user info to the elevator to be processed
-      Elevator.process(theUser); 
+     Elevator.process(); 
     
     //Increment the number of turns
       turns++;
    }
 }
-int defaultfloor(intnum_floors){    
 
- 
-current_floor=int(std::random()%chance to spawn user);
-return current_floor;  
-
-while (equal) {default_floor=random()% nfloor_num;
-if (current_floor !=default_floor) {
-equal = false; 
-} 
-int currentfloor;  
-bool equal = true;  
-int current_floor;
-return default floor;
-
-}
- return current floor;};
-/*
-void Simulation :: Simulate ()
-{  int turns = 0;
-   while(turns < MaxTurns)
-   {  //Generate a new user
-      User theUser = new User;
-    
-     //random numbers to generate starting and ending floors
-      int start = random();
-      int end = random();
-    
-    //determine direction from rand nums
-    int direction_;
-     if(end-start > 0) direction_ = 1;
-     else direction_ = -1;
-    
-    //assign random numbers to the user
-      theUser(direction_, start, end);
-    
-    //send the user info to the elevator to be processed
-      Elevator.process(theUser); 
-    
-    //Increment the number of turns
-      turns++;
-   }
-}

@@ -15,8 +15,10 @@ public:
   double Frequency;
 
  void Simulation :: Simulation (int elevatorFloor, int MaxTurns, double Frequency);
-  
+  bool Simulation :: genuser ();
 private:
   int clock;
   Elevator elevator;
+  std::list<User> simPassangers;
+  
 }
