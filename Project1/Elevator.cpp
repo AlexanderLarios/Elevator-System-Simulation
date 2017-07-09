@@ -34,6 +34,7 @@ int Elevator::setDirection(int direction_) {
 
 //called by sim interface. adds pick up request to directional vector
 void Elevator::called(int floor_, int direction_){
+	//add floor to proper list
 	if(direction_ ==1){
 		upList.push_back(floor_);
 		}
@@ -45,7 +46,6 @@ void Elevator::called(int floor_, int direction_){
 bool Elevator::checkFloor(list<int>& directionList){
 	for (list<int>::iterator it = directionList.begin(); it != directionList.end(); ++it) {
 		if (*it == currentFloor) {
-			
 			return true;
 		}
 	}
