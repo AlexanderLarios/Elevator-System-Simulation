@@ -13,6 +13,7 @@ public:
   int elevatorFloor;
   int MaxTurn;
   double Frequency;
+  int waitTime;
 
  void Simulation :: Simulation (int elevatorFloor, int MaxTurns, double Frequency);
   bool Simulation :: genuser ();
