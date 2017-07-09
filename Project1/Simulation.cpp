@@ -20,6 +20,9 @@ bool Simulation :: genuser ()
     
     //pushback user contructor into the list container
     Passengers.push_back(User(start, end));
+    
+    //
+    Elevator.called(start, end);
    }
 }
 void Simulation :: Simulate ()
