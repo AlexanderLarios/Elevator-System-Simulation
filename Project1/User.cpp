@@ -6,3 +6,4 @@ User :: User(int defaultFloor, int finalFloor, int direction_){
     pickedUp = false;
     direction = direction_;
 }
+//User :: ~User(){};
