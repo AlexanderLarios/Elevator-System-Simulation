@@ -8,11 +8,9 @@ public:
       int TurnsSinceSpawn
       int defaultFloor; //should be type random instead of int
       int finalFloor;//should be type random instead of int
-      //Random my_random;
+      Random my_random; //making those random should allow us to get rid of this line...
   
       int direction;
       bool pickedUp;
       
 };
-
-
