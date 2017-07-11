@@ -2,7 +2,7 @@
 // CS303 Project 1
 
 #include "Simulator.h"
-#include "Random"
+#include "Random.h"
 /*
 int timeWaited(){
 
