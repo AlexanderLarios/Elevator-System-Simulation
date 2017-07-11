@@ -13,4 +13,6 @@ public:
       int direction;
       bool pickedUp;
       
+      static void set_waiting_time(int wt){ waiting_time = wt;}
+      
 };
