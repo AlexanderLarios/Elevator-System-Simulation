@@ -5,5 +5,9 @@ User :: User(int defaultFloor, int finalFloor, int direction_){
     endFloor = finalFloor;
     pickedUp = false;
     direction = direction_;
+    
 }
 //User :: ~User(){};
+
+int User:: waiting_time;
+
