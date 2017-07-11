@@ -1,3 +1,4 @@
+//Also, similar to passenger for airline simulation
 #include "Elevator.h"
 #include "User.h"
 #include <iostream>
