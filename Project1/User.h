@@ -10,6 +10,7 @@ int defaultFloor;
 int finalFloor;
 int direction;
 bool pickedUp;
+Random my_random;
 };
 
 
