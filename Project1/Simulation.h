@@ -17,10 +17,17 @@ public:
   int waitTime;
 
  void Simulation :: Simulation (int elevatorFloor, int MaxTurns, double Frequency);
-  bool Simulation :: genuser ();
+ bool Simulation :: genuser ();
+ int get_arrival_time (){ return arrival_time;}
+ int get_waiting_time (){ return waiting_time;}
+  
+  
 private:
   int clock;
+  int arrival_time;
+  int waiting_time; //max_processing_time in simulator
+  
   Elevator elevator;
-  std::list<User> simPassangers;
+  std::list<User> simPassengers;
   
 }
