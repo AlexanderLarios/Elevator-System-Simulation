@@ -26,6 +26,7 @@ private:
   int clock;
   int arrival_time;
   int waiting_time; //max_processing_time in simulator
+  Random my_random;
   
   Elevator elevator;
   std::list<User> simPassengers;
