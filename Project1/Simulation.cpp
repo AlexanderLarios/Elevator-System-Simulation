@@ -40,12 +40,13 @@ newFunction(){
     Frequency = Frequency_;
  }
 bool Simulation :: genuser ()
-{    //Generate a new user
-   if(rand() % (2)) == 0)
+{  //Generate a new user
+   //int waiting_time == defined in user.h as a static int
+   if(my_random(waiting_time) % (2)) == 0)
    {
      //random numbers to generate starting and ending floors
-      int start = int(std::random()%floors);
-      int end = int(std::random()%floors);
+      int start = my_random.next_int(waiting_time);
+      int end  = my_random.next_int(waiting_time);
       if(start < end){
         direction = 1 ;
        }
