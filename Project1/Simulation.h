@@ -1,4 +1,5 @@
 #include <list>
+#include "Elevator.h"
 #pragma once
 class Simulation {
 private:
@@ -9,14 +10,19 @@ private:
 	int randInt;
 	int floors;
 	int direction;
+	int start;
+	int end;
     double Frequency;
-    std::list<Passenger> simPassengers;
+	Elevator elevator = Elevator(floors, 1);
+    std::list<Passenger> passengers;
    
 public:
-    Simulation(int elevatorFloor_, int MaxTurns_, double Frequency_);
+    Simulation(int floors_, int MaxTurns_, double Frequency_);
+	void addTurns();
 	int getWaitTime();
-    void Simulate();
+    void simulate();
     bool spawnPassenger ();
+
   
   
 };

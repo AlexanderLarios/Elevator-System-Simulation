@@ -12,31 +12,6 @@
 using namespace std;
 
 //interface functions
-
-//function to call elevator
-// we may need a wrapper for distribution logic for multiple elevator systems.
-/*
-void callElevator(int floor,bool direction)
-{
-	if (floor == 0) 
-	{
-		//LogicElevator.called(floor,true);
-	}
-	else if(floor == levels)
-	{
-		//LogicElevator.called(floor,false);
-	}
-
-	else 
-	{
-		//LogicElevator.called(floor,direction);
-	}
-}
-//function for elevator commands from inner pannel
-void floorSelection(int floor) {
-
-}
-*/
 //Global variables
 //Main loop
 int main()
@@ -44,7 +19,9 @@ int main()
 	cout << "Welcome To Elevator System Management..." << endl;
 	int choice; //choice from menu
 	int levels;//Floors in building
-	int numElevators; // Number elevators
+	int maxTurns;
+	int defaultFloor;
+	int Frequency;
 	do // Main do while loop until exit is choosen
 	{
 		//Displaying Options for the menu
@@ -64,14 +41,12 @@ int main()
 			//Call sim function with predetermined perameter set 1
 			cout << "Elevator Simulation 1" << endl;
 			levels = 10;
-			numElevators = 1;
 		}
 		else if (choice == 2)
 		{
 			// Call sim function with predetermined perameter set 2
 			cout << "Elevator Simulation 2" << endl;
 			levels = 10;
-			numElevators = 2;
 		}
 		else if (choice == 3)
 		{
@@ -94,12 +69,12 @@ int main()
 			strInput = "";
 			while (true)
 			{
-				cout << "Please enter number of elevators in service:" << endl;
+				cout << "Please enter how many tunrs you would like sim to run for." << endl;
 				getline(cin, strInput);
 
 				// This code converts from string to number safely.
 				stringstream myStream(strInput);
-				if ((myStream >> numElevators))
+				if ((myStream >> maxTurns))
 					break;
 				cout << "Invalid input, please try again" << endl;
 			}

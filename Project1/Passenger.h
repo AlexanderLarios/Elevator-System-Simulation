@@ -1,8 +1,8 @@
 #pragma once
-class User{
+class Passenger{
 //Private members
 private:
-    int waitingTime;
+    int turns;
     int direction;
     int startFloor;
     int endFloor;
@@ -10,11 +10,10 @@ private:
 //Public Members
 public:
     //constructor
-    User(int defaultFloor, int finalFloor, int direction_);
-    //setter
-    void setWT(int wt);
+    Passenger(int defaultFloor, int finalFloor, int direction_);
+    void addTurn();
     //getter
-    int getWT();
+    int getTurns();
     int getStartFloor();
     int getEndFloor();
     int getDirection();

@@ -2,7 +2,8 @@
 // Elevator class 
 // Define that.
 #include "Elevator.h"
-
+#include <iterator>
+using namespace std;
 //constructor
 Elevator::Elevator(int floors_, int defaultFloor_) 
 {
@@ -43,39 +44,44 @@ void Elevator::called(int floor_, int direction_){
 		}
 
 }
-bool Elevator::checkFloor(list<int>& directionList){
-	for (list<int>::iterator it = directionList.begin(); it != directionList.end(); ++it) {
-		if (*it == currentFloor) {
-			return true;
+bool Elevator::checkFloor(){
+	if (direction == 1) {
+		for (list<int>::iterator it = upList.begin(); it != upList.end(); ++it) {
+			if (*it == currentFloor) {
+				return true;
+			}
+		}
+	}
+	else if (direction == -1){
+		for (list<int>::iterator it = downList.begin(); it != downList.end(); ++it) {
+			if (*it == currentFloor) {
+				return true;
+			}
 		}
 	}
 	return false;
+
 }
 
 //if floor is destination it pops the int floor from list and sends Open door /Drop off to sim
 bool Elevator::dropOff(){
 	if (direction == 1 ){
-		std::list<int>::iterator it = upList.begin();
+		list<int>::iterator it = upList.begin();
 		while (it != upList.end()) {
-		// Remove elements while iterating
 		if ((*it) == currentFloor) {
-		// erase() makes the passed iterator invalid
-		// But returns the iterator to the next of deleted element
-		it = upList.erase(it);
-		return true;
-		} else
-		it++;
+			it = upList.erase(it);
+			return true;
+		}
+		else
+			it++;
 		}
 		return false;
 		
 	}
 	else if (direction == -1) {
-		std::list<int>::iterator it = downList.begin();
+		list<int>::iterator it = downList.begin();
 		while (it != downList.end()) {
-			// Remove elements while iterating
 			if ((*it) == currentFloor) {
-				// erase() makes the passed iterator invalid
-				// But returns the iterator to the next of deleted element
 				it = downList.erase(it);
 				return true;
 			}
@@ -84,7 +90,7 @@ bool Elevator::dropOff(){
 		}
 		return false;
 	}
-	else 
+	else
 		return false;
 }
 
@@ -147,16 +153,16 @@ bool Elevator::process(){
 			moveDown();
 		}
 	}
-	//checks to see if the current floor is a destination from appropriate vector.
+	//checks to see if the current floor is in the direction lists.
 	else if (dropOff()) {
-		//call open for sims to get off
+		//return true so the simulation knows to check passangers
 		open();
 	}
 	else {
         if(direction == 1 && this->checkUkUp() ==true){
 			moveUp();
 		}
-		else if (direction == -1 && Elevator.checkUkDow() == true) {
+		else if (direction == -1 && this->checkUkDown() == true) {
 			moveDown();
 		}
 		else{
