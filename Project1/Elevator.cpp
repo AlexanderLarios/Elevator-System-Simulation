@@ -2,6 +2,7 @@
 // Elevator class 
 // Define that.
 #include "Elevator.h"
+#include <iterator>
 
 //constructor
 Elevator::Elevator(int floors_, int defaultFloor_) 
@@ -43,13 +44,23 @@ void Elevator::called(int floor_, int direction_){
 		}
 
 }
-bool Elevator::checkFloor(list<int>& directionList){
-	for (list<int>::iterator it = directionList.begin(); it != directionList.end(); ++it) {
-		if (*it == currentFloor) {
-			return true;
+bool Elevator::checkFloor(){
+	if (direction == 1) {
+		for (std::list<int>::iterator it = upList.begin(); it != upList.end(); ++it) {
+			if (*it == currentFloor) {
+				return true;
+			}
+		}
+	}
+	else if (direction == -1){
+		for (std::list<int>::iterator it = downList.begin(); it != downList.end(); ++it) {
+			if (*it == currentFloor) {
+				return true;
+			}
 		}
 	}
 	return false;
+
 }
 
 //if floor is destination it pops the int floor from list and sends Open door /Drop off to sim
