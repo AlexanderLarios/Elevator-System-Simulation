@@ -169,6 +169,14 @@ bool Elevator::process(){
 		else if (direction == -1 && this->checkUkDown() == true) {
 			moveDown();
 		}
+		else if (direction == 0) {
+			if (this->checkUkUp() == true) {
+				moveUp();
+			}
+			if (this->checkUkDown() == true) {
+				moveDown();
+			}
+		}
 		else{
 			if (direction == -1) {
 				moveUp();
