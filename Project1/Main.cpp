@@ -41,7 +41,7 @@ int main()
 			//Call sim function with predetermined perameter set 1
 			cout << "Elevator Simulation 1" << endl;
 			levels = 10;
-			Frequency = 50;
+			spawnRate = 50;
 			maxTurns = 15;
 			Simulation(levels,maxTurns,spawnRate)
 		}

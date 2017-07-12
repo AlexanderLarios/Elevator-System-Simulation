@@ -20,8 +20,8 @@ int Simulation::getWaitTime() {
 
 bool Simulation :: spawnPassenger (){  
 	randInt = randomInt();
-	//50% chance to spawn a new
-    if(randInt <= 50){
+	//spawnRate% chance to spawn a new passenger
+    if(randInt <= spawnRate){
 		//random numbers to generate starting and ending floors
 		start = randomFloor(floors);
 		end =randomFloor(floors);
