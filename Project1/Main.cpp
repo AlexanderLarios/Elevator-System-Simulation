@@ -6,6 +6,9 @@
 #include <sstream>
 #include <iterator>
 #include "Elevator.h"
+#include "Simulation.h"
+#include "Passenger.h"
+#include "Random.h"
 using namespace std;
 
 //interface functions

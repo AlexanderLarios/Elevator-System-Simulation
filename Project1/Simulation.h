@@ -1,5 +1,4 @@
 #include <list>
-#include "User.h"
 #pragma once
 class Simulation {
 private:
@@ -7,10 +6,11 @@ private:
 	int maxTurns;
     int clock;
 	int waitTime;
-	int randomInt;
+	int randInt;
 	int floors;
+	int direction;
     double Frequency;
-    std::list<User> simPassengers;
+    std::list<Passenger> simPassengers;
    
 public:
     Simulation(int elevatorFloor_, int MaxTurns_, double Frequency_);

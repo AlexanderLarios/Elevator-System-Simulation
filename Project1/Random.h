@@ -6,6 +6,7 @@ int randomInt() {
 }
 // semi random number in range bet
 int randomFloor(int floors) {
-    int randoPoint = rand() % floors + 1;
-
+	int randoPoint = rand() % floors + 1;
+	return randoPoint;
+}
   

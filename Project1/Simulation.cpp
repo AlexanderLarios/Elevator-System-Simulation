@@ -13,25 +13,28 @@ Simulation::Simulation(int floors_ , int MaxTurns_, double Frequency_)
     Frequency = Frequency_;
  }
 bool Simulation :: spawnPassenger ()
-{  //Generate a new user
-    if(random() < 50){
-        
+{  //50% chance to spawn a new
+	randInt = randomInt();
+    if(randInt <= 50){
+		//random numbers to generate starting and ending floors
+		int start = randomFloor(floors);
+		int end =randomFloor(floors);
+		if (start < end) {
+			direction = 1;
+		}
+		else {
+			direction = -1;
+		}
+		//Call 
+		simPassengers.push_back(Passanger(start, end, direction));
     }
-   {
-     //random numbers to generate starting and ending floors
-      int start = RandomFloor;
-      int end  = my_random.next_int(waiting_time);
-      if(start < end){
-        direction = 1 ;
-       }
-    else {
-        direction = -1;
-         }
-    
+   
+     
+
     //pushback user contructor into the list container
-    Passengers.push_back(User(start, end, direction));
+    Passengers.push_back(Passenger(start, end, direction));
     Elevator.called(start, direction);
-   }
+   
 }
 
 void Simulation :: Simulate ()

@@ -22,13 +22,13 @@
     <ClCompile Include="Elevator.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Simulation.cpp" />
-    <ClCompile Include="User.cpp" />
+    <ClCompile Include="Passenger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Elevator.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Simulation.h" />
-    <ClInclude Include="User.h" />
+    <ClInclude Include="Passenger.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D41A143D-4834-4068-AAAF-CDA2B10AB374}</ProjectGuid>
