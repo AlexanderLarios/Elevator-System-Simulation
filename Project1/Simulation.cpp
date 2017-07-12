@@ -9,10 +9,10 @@
 Simulation::Simulation(int floors_ , int MaxTurns_, double Frequency_)
  {  
     floors = floors_;
-    MaxTurns = MaxTurns_;
+    maxTurns = MaxTurns_;
     Frequency = Frequency_;
  }
-bool Simulation :: genuser ()
+bool Simulation :: spawnPassenger ()
 {  //Generate a new user
     if(random() < 50){
         

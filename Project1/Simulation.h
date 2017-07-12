@@ -4,7 +4,7 @@
 class Simulation {
 private:
 	int Turn = 0;
-	int MaxTurn;
+	int maxTurns;
     int clock;
 	int waitTime;
 	int randomInt;
@@ -16,7 +16,7 @@ public:
     Simulation(int elevatorFloor_, int MaxTurns_, double Frequency_);
 	int getWaitTime();
     void Simulate();
-    bool genUser ();
+    bool spawnPassenger ();
   
   
 };
