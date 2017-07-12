@@ -33,7 +33,8 @@ newFunction(){
   
 }
 */
- void Simulation :: Simulate (int elevatorFloor_, int MaxTurns_, double Frequency_)
+//Constructor
+    Simulation :: Simulation(int elevatorFloor_, int MaxTurns_, double Frequency_)
  {  
     elevatorFloor = elevatorFloor_;
     MaxTurns = MaxTurns_;
