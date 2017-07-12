@@ -3,7 +3,7 @@
 // Define that.
 #include "Elevator.h"
 #include <iterator>
-
+using namespace std;
 //constructor
 Elevator::Elevator(int floors_, int defaultFloor_) 
 {
@@ -46,14 +46,14 @@ void Elevator::called(int floor_, int direction_){
 }
 bool Elevator::checkFloor(){
 	if (direction == 1) {
-		for (std::list<int>::iterator it = upList.begin(); it != upList.end(); ++it) {
+		for (list<int>::iterator it = upList.begin(); it != upList.end(); ++it) {
 			if (*it == currentFloor) {
 				return true;
 			}
 		}
 	}
 	else if (direction == -1){
-		for (std::list<int>::iterator it = downList.begin(); it != downList.end(); ++it) {
+		for (list<int>::iterator it = downList.begin(); it != downList.end(); ++it) {
 			if (*it == currentFloor) {
 				return true;
 			}
@@ -66,7 +66,7 @@ bool Elevator::checkFloor(){
 //if floor is destination it pops the int floor from list and sends Open door /Drop off to sim
 bool Elevator::dropOff(){
 	if (direction == 1 ){
-		std::list<int>::iterator it = upList.begin();
+		list<int>::iterator it = upList.begin();
 		while (it != upList.end()) {
 		// Remove elements while iterating
 		if ((*it) == currentFloor) {
@@ -81,7 +81,7 @@ bool Elevator::dropOff(){
 		
 	}
 	else if (direction == -1) {
-		std::list<int>::iterator it = downList.begin();
+		list<int>::iterator it = downList.begin();
 		while (it != downList.end()) {
 			// Remove elements while iterating
 			if ((*it) == currentFloor) {
@@ -120,7 +120,7 @@ void Elevator::goToFloor(int floor_) {
 
 //Checks to see if Uk > 0 for upList
 bool Elevator::checkUkUp() {
-	for (std::list<int>::iterator it = upList.begin(); it != upList.end(); ++it) {
+	for (list<int>::iterator it = upList.begin(); it != upList.end(); ++it) {
 		if (*it > currentFloor) {
 			return true;
 		}
@@ -130,7 +130,7 @@ bool Elevator::checkUkUp() {
 }
 //Checks to see if Uk < 0 for Down List
 bool Elevator::checkUkDown() {
-	for (std::list<int>::iterator it = downList.begin(); it != downList.end(); ++it) {
+	for (list<int>::iterator it = downList.begin(); it != downList.end(); ++it) {
 		if (*it < currentFloor) {
 			return true;
 		}

@@ -10,7 +10,10 @@ private:
 	int randInt;
 	int floors;
 	int direction;
+	int start;
+	int end;
     double Frequency;
+	Elevator elevator = Elevator(floors, 1);
     std::list<Passenger> simPassengers;
    
 public:
