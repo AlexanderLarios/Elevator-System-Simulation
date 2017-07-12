@@ -120,7 +120,7 @@ void Elevator::goToFloor(int floor_) {
 
 //Checks to see if Uk > 0 for upList
 bool Elevator::checkUkUp() {
-	for (list<int>::iterator it = upList.begin(); it != upList.end(); ++it) {
+	for (std::list<int>::iterator it = upList.begin(); it != upList.end(); ++it) {
 		if (*it > currentFloor) {
 			return true;
 		}
@@ -130,7 +130,7 @@ bool Elevator::checkUkUp() {
 }
 //Checks to see if Uk < 0 for Down List
 bool Elevator::checkUkDown() {
-	for (list<int>::iterator it = downList.begin(); it != downList.end(); ++it) {
+	for (std::list<int>::iterator it = downList.begin(); it != downList.end(); ++it) {
 		if (*it < currentFloor) {
 			return true;
 		}
@@ -167,7 +167,7 @@ bool Elevator::process(){
         if(direction == 1 && this->checkUkUp() ==true){
 			moveUp();
 		}
-		else if (direction == -1 && Elevator.checkUkDow() == true) {
+		else if (direction == -1 && this->checkUkDown() == true) {
 			moveDown();
 		}
 		else{
