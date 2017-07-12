@@ -1,5 +1,5 @@
 #include "User.h"
-
+//Constructor
 User::User(int defaultFloor, int finalFloor, int direction_){
     startFloor = defaultFloor;
     endFloor = finalFloor;
@@ -7,12 +7,12 @@ User::User(int defaultFloor, int finalFloor, int direction_){
     direction = direction_;
     }
 
-
+//Setters
 void User::setWT(int wt){
     waitingTime = wt;
     }
 
-
+//Getters
 int User::getWT(){
     return waitingTime;
 }

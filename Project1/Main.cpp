@@ -34,8 +34,6 @@ void floorSelection(int floor) {
 }
 */
 //Global variables
-
-vector<int> floors;
 //Main loop
 int main()
 {

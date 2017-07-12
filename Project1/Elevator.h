@@ -37,7 +37,7 @@ public:
 	int getDirection();
 	
 	//overides direction of elevator
-	int setDirection(int direction_);
+	void setDirection(int direction_);
 	
 	//Change default floor
 	void SetDefaultFloor(int defaultFloor_);
@@ -59,8 +59,10 @@ public:
 	
 	int open();
 	//
-	bool checkUkUp(list<int>& upList_);
-	bool checkUkDown(list<int>& downList_);
+	bool checkUkUp();
+    
+	bool checkUkDown();
+    
 	bool checkFloor(list<int>& directionList);
 	
 
