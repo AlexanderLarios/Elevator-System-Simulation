@@ -155,6 +155,7 @@ bool Elevator::process(){
 			direction = -1;
 			moveDown();
 		}
+		return false;
 	}
 	//checks to see if the current floor is in the direction lists.
 	else if (dropOff()) {
@@ -168,14 +169,22 @@ bool Elevator::process(){
 		else if (direction == -1 && this->checkUkDown() == true) {
 			moveDown();
 		}
+		else if (direction == 0) {
+			if (this->checkUkUp() == true) {
+				moveUp();
+			}
+			if (this->checkUkDown() == true) {
+				moveDown();
+			}
+		}
 		else{
 			if (direction == -1) {
 				moveUp();
 			}
 			else {
 				moveDown();
-    return false;
 			}
 		}
+		return false;
 	}
 }
