@@ -3,36 +3,8 @@
 
 #include "Simulation.h"
 #include "Random.h"
-/*
-int timeWaited(){
 
-}
-*/
-/*
-//
-newFunction(){
-  currentFloor = E1.getcurrentFloor;
-  direction = E1.getDirection;
-  if(open() == true && pickup()== true && direction == 1)
-  {
-    for (list<int>::iterator it = upList_.begin(); it != upList_.end(); ++it) {
-		if (*it > currentFloor) {
-			return true;
-		}
-	}
-  }
-  else if(open() == true && pickup()== true && direction == -1)
-  {
-    for (list<int>::iterator it = upList_.begin(); it != upList_.end(); ++it) {
-		if (*it > currentFloor) {
-			return true;
-		}
-	}
-  }
-  
-  
-}
-*/
+
 //Constructor
     Simulation :: Simulation(int elevatorFloor_, int MaxTurns_, double Frequency_)
  {  
@@ -42,8 +14,9 @@ newFunction(){
  }
 bool Simulation :: genuser ()
 {  //Generate a new user
-   //int waiting_time == defined in user.h as a static int
-   if(my_random(waiting_time) % (2)) == 0)
+    if(Random.random() < 50){
+        
+    }
    {
      //random numbers to generate starting and ending floors
       int start = my_random.next_int(waiting_time);
@@ -65,11 +38,9 @@ bool Simulation :: genuser ()
 
 void Simulation :: Simulate ()
 {  int turns = 0;
-   while(turns < MaxTurns)
-   { genuser();
-    
-    //send the user info to the elevator to be processed
-     Elevator.process(); 
+   while(turns < MaxTurns){
+       if genuser();
+     if Elevator.process()
     
     //Increment the number of turns
       turns++;
