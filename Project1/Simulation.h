@@ -17,7 +17,7 @@ private:
     std::list<Passenger> passengers;
    
 public:
-    Simulation(int elevatorFloor_, int MaxTurns_, double Frequency_);
+    Simulation(int floors_, int MaxTurns_, double Frequency_);
 	void addTurns();
 	int getWaitTime();
     void simulate();
