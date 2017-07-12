@@ -1,77 +1,60 @@
-// Simulation.h 
-// CS303 Project 1
-
 #include "Simulator.h"
-#include "Random.h"
-/*
-int timeWaited(){
+#include "ElevatorList.h"
+#include <iostream>
+Simulator :: Simulator(double thefrequency, int theprocessing_time, int &thetotal_floors)
+	{
+		frequency = thefrequency; processing_time = theprocessing_time; totalfloors = thetotal_floors;
+	}
+Simulator :: Simulator() 
+	{ 
+		frequency = .5; processing_time = 30; int totalfloors = 15;
+	}
+void Simulator::run_simulation()
+	{
+		for (clock = 0; clock < total_time_allowed(); clock++)
+		{
+			uplist.check_new_arrival(clock, show_all);
 
-}
-*/
-/*
-//
-newFunction(){
-  currentFloor = E1.getcurrentFloor;
-  direction = E1.getDirection;
-  if(open() == true && pickup()== true && direction == 1)
-  {
-    for (list<int>::iterator it = upList_.begin(); it != upList_.end(); ++it) {
-		if (*it > currentFloor) {
-			return true;
+			downlist.check_new_arrival(clock, show_all);
+
+			if (clock >= time_done) start_serve();
+
 		}
 	}
-  }
-  else if(open() == true && pickup()== true && direction == -1)
-  {
-    for (list<int>::iterator it = upList_.begin(); it != upList_.end(); ++it) {
-		if (*it > currentFloor) {
-			return true;
+void Simulator::start_serve() 
+	{
+		if (!uplist.empty() || downlist.empty())
+		{
+			time_done = uplist.update(clock, show_all);
+		}
+		else if (!downlist.empty() || uplist.empty())
+		{
+			time_done = downlist.update(clock, show_all);
+		}
+		else if (show_all) {
+			cout << "Time is " << clock << ": Server is idle\n";
 		}
 	}
-  }
-  
-  
-}
-*/
- void Simulation :: Simulation (int elevatorFloor_, int MaxTurns_, double Frequency_)
- {  
-    elevatorFloor = elevatorFloor_;
-    MaxTurns = MaxTurns_;
-    Frequency = Frequency_;
- }
-bool Simulation :: genuser ()
-{  //Generate a new user
-   //int waiting_time == defined in user.h as a static int
-   if(my_random(waiting_time) % (2)) == 0)
-   {
-     //random numbers to generate starting and ending floors
-      int start = my_random.next_int(waiting_time);
-      int end  = my_random.next_int(waiting_time);
-      if(start < end){
-        direction = 1 ;
-       }
-    else {
-        direction = -1;
-         }
-    
-    //pushback user contructor into the list container
-    Passengers.push_back(User(start, end, direction));
-    
-    //
-    Elevator.called(start, direction);
-   }
-}
+void Simulator::show_stats(const User passenger, ElevatorLists up, ElevatorLists down)
+	{
+		cout << "\n The number of passengers served going up was "
+			<< up.get_num_served() << endl;
+		double average_waiting_time = double(up.get_total_wait())
+			/ double(up.get_num_served());
 
-void Simulation :: Simulate ()
-{  int turns = 0;
-   while(turns < MaxTurns)
-   { genuser();
-    
-    //send the user info to the elevator to be processed
-     Elevator.process(); 
-    
-    //Increment the number of turns
-      turns++;
-   }
-}
+		cout << " with an average waiting time of "
+			<< average_waiting_time << endl;
 
+		cout << "\n The number of passengers served going up was "
+			<< down.get_num_served() << endl;
+		double average_waiting_time = double(down.get_total_wait())
+			/ double(down.get_num_served());
+
+		cout << " with an average waiting time of "
+			<< average_waiting_time << endl;
+
+	}
+float frequency_of_arrivals() {}
+int max_processing_time() {}
+int total_time_allowed() {}
+bool show_all() {}

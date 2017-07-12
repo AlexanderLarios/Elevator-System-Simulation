@@ -1,171 +1,79 @@
-// Elevator.cpp
-// Elevator class 
-// Define that.
-#include "Elevator.h"
-//constructor
-Elevator::Elevator(int floors_, int defaultFloor_) 
+#include "ElevatorList.h"
+#include "Random.h"
+using namespace std;
+
+ElevatorLists::ElevatorLists(int dfloor, int ffloor, int clock)
 {
-	floors = floors_;
-	defaultFloor = defaultFloor_;
-	currentFloor = defaultFloor_;
-	direction = -1;
+	User next_passenger; 
+	next_passenger.defaultfloor = dfloor;
+	next_passenger.finalfloor = ffloor;
+	next_passenger.starttime = clock;
 }
-//Change default floor
-void Elevator::SetDefaultFloor(int defaultFloor_) {
-	defaultFloor = defaultFloor_;
-}
-//returns default floor of elevator
-int Elevator:: getDefaultFloor() {
-	return defaultFloor;
-}
-//returns current floor of elevator
-int Elevator::getCurrentFloor() {
-	return currentFloor;
-}
-
-//returns current elevator direction -1 down, 0 idle , 1 up ;)
-int Elevator::getDirection() {
-	return direction;
-}
-//overides direction of elevator
-int Elevator::setDirection(int direction_) {
-	direction = direction_;
-}
-
-//called by sim interface. adds pick up request to directional vector
-void Elevator::called(int floor_, int direction_){
-	//add floor to proper list
-	if(direction_ ==1){
-		upList.push_back(floor_);
-		}
-	else if (direction_ ==-1){
-		downList.push_back(floor_);
-		}
-
-}
-bool Elevator::checkFloor(list<int>& directionList){
-	for (list<int>::iterator it = directionList.begin(); it != directionList.end(); ++it) {
-		if (*it == currentFloor) {
-			return true;
-		}
-	}
-	return false;
-}
-
-//if floor is destination it pops the int floor from list and sends Open door /Drop off to sim
-bool Elevator::dropOff(){
-	if (direction == 1 ){
-		std::list<int>::iterator it = upList.begin();
-		while (it != upList.end()) {
-		// Remove elements while iterating
-		if ((*it) == currentFloor) {
-		// erase() makes the passed iterator invalid
-		// But returns the iterator to the next of deleted element
-		it = upList.erase(it);
-		return true;
-		} else
-		it++;
-		}
-		return false;
-		
-	}
-	else if (direction == -1) {
-		std::list<int>::iterator it = downList.begin();
-		while (it != downList.end()) {
-			// Remove elements while iterating
-			if ((*it) == currentFloor) {
-				// erase() makes the passed iterator invalid
-				// But returns the iterator to the next of deleted element
-				it = downList.erase(it);
-				return true;
-			}
-			else
-				it++;
-		}
-		return false;
-	}
-	else 
-		return false;
-}
-
-//Moves elevator up or down a floor by altering current floor and moving in that floors direction
-void Elevator::moveUp(){
-	currentFloor++;
-	direction = 1;
-}
-void Elevator::moveDown(){
-	currentFloor--;
-	direction = -1;
-}
-//add floor as a destination accessed by sim interface inside car.
-void Elevator::goToFloor(int floor_) {
-	if (floor_ > currentFloor) {
-		upList.push_back(floor_);
-	}
-	else {
-		downList.push_back(floor_);
-	}
-}
-
-//Checks to see if Uk > 0 for upList
-bool Elevator::checkUkUp(list<int>& upList_) {
-	for (list<int>::iterator it = upList_.begin(); it != upList_.end(); ++it) {
-		if (*it > currentFloor) {
-			return true;
-		}
-	}
-	return false;
-	
-}
-//Checks to see if Uk < 0 for Down List
-bool Elevator::checkUkDown(list<int>& downList_) {
-	for (list<int>::iterator it = downList_.begin(); it != downList_.end(); ++it) {
-		if (*it < currentFloor) {
-			return true;
-		}
-	}
-	return false;
-
-}
-//allows sims to get out. have not created them yet though.
-int Elevator::open() {
-	return floor, direction;	
-}
-// logic run by elevator when it reaches a new floor or when released from idle
-int Elevator::process(){
-	//If the elevator is idle return it to its default floor
-	if(upList.empty() && downList.empty()) {
-		if(currentFloor == defaultFloor){
-			direction = 0;
-		}
-		else if (currentFloor < defaultFloor) {
-			direction = 1;
-			moveUp();
-		}
-		else {
-			direction = -1;
-			moveDown();
-		}
-	}
-	//checks to see if the current floor is a destination from appropriate vector.
-	else if (dropOff()) {
-		//call open for sims to get off
-		open();
-	}
-	else {
-		if(direction == 1 && checkUkUp){
-			moveUp();
-		}
-		else if (direction == -1 && checkUkDown) {
-			moveDown();
-		}
-		else{
-			if (direction == -1) {
-				moveUp();
-			}
-			else {
-				moveDown();
+User :: User(int arrive_time)
+void check_new_arrival(int clock, bool show_all)
+{
+	while (clock > 0)
+	{
+		if (my_random.next_double() < frequency)
+		{
+			while (int a = my_random.next_int())
+			{
+				if (a > 0 && a < totalfloors)
+				{
+					defaultfloor = a;
+				}
+				if (int B = my_random.next_int() > 0 && B < totalfloors)
+				{
+					finalfloor = a;
+					break;
+				}
 			}
 		}
 	}
+	if (a > B) { direction = -1; downlist.push(User(clock)); }
+	if (a < B) { direction = 1;	uplist.push(User(clock));	}
+	if (a == B) { direction = 0; dropoff(); }
+	if (show_all && direction == 1)
+	{
+		cout << "Time is " << clock << ": " << uplist << " arrival, new list size is " << uplist.size() << endl;
+	}
+	if (show_all && direction == -1)
+	{
+		cout << "Time is " << clock << ": " << downlist << " arrival, new list size is " << downlist.size() << endl;
+	}
 }
+
+int ElevatorList::update(int clock, bool show_all)
+{	if(User.direction == 1)
+	{
+		User next_passenger = uplist.front();
+		uplist.pop();
+
+	}
+
+	if (User.direction == -1)
+	{
+		User next_passenger = downlist.front();
+		downlist.pop();
+	}
+
+	int time_stamp = next_passenger.get_arrival_time();
+	int wait = clock - time_stamp;
+	total_wait += wait;
+	number_served++;
+
+	if (show_all && User.direction == 1)
+	{
+		cout << "Time is " << clock << ": " << uplist << " arrival, new list size is " << uplist.size() << endl;
+	}
+
+	if (show_all && User.direction == -1)
+	{
+		cout << "Time is " << clock << ": " << downlist << " arrival, new list size is " << downlist.size() << endl;
+	}
+
+	return (clock + next_passenger.get_processing_time());
+
+}
+
+
