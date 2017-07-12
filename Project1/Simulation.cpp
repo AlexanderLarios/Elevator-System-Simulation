@@ -7,11 +7,11 @@
 #include <iostream>
 using namespace std;
 //Constructor
-Simulation::Simulation(int floors_ , int MaxTurns_, double Frequency_)
+Simulation::Simulation(int floors_ , int maxTurns_, double spawnRate_)
  {  
     floors = floors_;
-    maxTurns = MaxTurns_;
-    Frequency = Frequency_;
+    maxTurns = maxTurns_;
+    spawnRate = spawnRate_;
  }
 
 int Simulation::getWaitTime() {
@@ -40,7 +40,7 @@ bool Simulation :: spawnPassenger (){
 }
 //increments all passangers turns by 1
 void Simulation::addTurns() {
-	for (list<Passenger>::iterator it = passengers.begin(); it != passengers.end(); ++it) {
+	for (list<Passenger>::iterator it = passengers.front(); it != passengers.back(); ++it) {
 		it->addTurn;
 	}
 }

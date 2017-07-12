@@ -21,13 +21,13 @@ int main()
 	int levels;//Floors in building
 	int maxTurns;
 	int defaultFloor;
-	int Frequency;
+	int spawnRate;
 	do // Main do while loop until exit is choosen
 	{
 		//Displaying Options for the menu
 		
 		cout << "Main Menu" << endl;
-		cout << "1) Run Elevator Simulation 1 " << endl;
+		cout << "1) Run Elevator Simulation Test " << endl;
 		cout << "2) Run Elevator Simulation 2 " << endl;
 		cout << "3) Run Custom Elevator Simulation" << endl;
 		cout << "4) Exit Program " << endl;
@@ -41,6 +41,9 @@ int main()
 			//Call sim function with predetermined perameter set 1
 			cout << "Elevator Simulation 1" << endl;
 			levels = 10;
+			Frequency = 50;
+			maxTurns = 15;
+			Simulation(levels,maxTurns,spawnRate)
 		}
 		else if (choice == 2)
 		{

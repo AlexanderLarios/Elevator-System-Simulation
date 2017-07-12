@@ -11,7 +11,7 @@ private:
 	int direction;
 	int start;
 	int end;
-    double Frequency;
+    int spawnRate;
 	Elevator elevator = Elevator(floors, 1);
     std::list<Passenger> passengers;
    
