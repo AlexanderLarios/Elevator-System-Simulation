@@ -1,34 +1,24 @@
-//Also, similar to passenger for airline simulation
-#include "Elevator.h"
-#include "User.h"
-#include <iostream>
 
-using namespace std;
-
-class Simulation 
-{
-public:
-  
-  Simulation() :clock(0) {}
-  
-  int elevatorFloor;
-  int MaxTurn;
-  double Frequency;
-  int waitTime;
-
- void Simulation :: Simulation (int elevatorFloor, int MaxTurns, double Frequency);
- bool Simulation :: genuser ();
- int get_arrival_time (){ return arrival_time;}
- int get_waiting_time (){ return waiting_time;}
-  
-  
+#pragma once
+class Simulation {
 private:
-  int clock;
-  int arrival_time;
-  int waiting_time; //max_processing_time in simulator
-  Random my_random;
+    int clock;
+    int arrival_time;
+    int waiting_time; //max_processing_time in simulator
+    int my_random;
+    double Frequency;
+    std::list<int> simPassengers;
+   
+public:
+    Simulation();
+    int elevatorFloor;
+    int MaxTurn;
+    int waitTime;
+    int get_arrival_time (){ return arrival_time;}
+    int get_waiting_time (){ return waiting_time;}
+   
+    void Simulation :: Simulation (int elevatorFloor, int MaxTurns, double Frequency );
+    bool Simulation :: genuser ();
   
-  Elevator elevator;
-  std::list<User> simPassengers;
   
 }

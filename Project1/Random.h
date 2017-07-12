@@ -1,3 +1,4 @@
+//From airline simulation.
 #include <cstdlib>
 #include <ctime>
 

@@ -2,6 +2,7 @@
 // Elevator class 
 // Define that.
 #include "Elevator.h"
+
 //constructor
 Elevator::Elevator(int floors_, int defaultFloor_) 
 {

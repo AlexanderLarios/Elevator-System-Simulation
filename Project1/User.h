@@ -18,7 +18,5 @@ public:
     int getStartFloor();
     int getEndFloor();
     int getDirection();
-    
-
 };
 
