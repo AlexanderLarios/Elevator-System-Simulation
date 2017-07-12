@@ -6,20 +6,20 @@
 
 
 //Constructor
-    Simulation :: Simulation(int elevatorFloor_, int MaxTurns_, double Frequency_)
+Simulation::Simulation(int floors_ , int MaxTurns_, double Frequency_)
  {  
-    elevatorFloor = elevatorFloor_;
+    floors = floors_;
     MaxTurns = MaxTurns_;
     Frequency = Frequency_;
  }
 bool Simulation :: genuser ()
 {  //Generate a new user
-    if(Random.random() < 50){
+    if(random() < 50){
         
     }
    {
      //random numbers to generate starting and ending floors
-      int start = my_random.next_int(waiting_time);
+      int start = RandomFloor;
       int end  = my_random.next_int(waiting_time);
       if(start < end){
         direction = 1 ;
@@ -30,8 +30,6 @@ bool Simulation :: genuser ()
     
     //pushback user contructor into the list container
     Passengers.push_back(User(start, end, direction));
-    
-    //
     Elevator.called(start, direction);
    }
 }

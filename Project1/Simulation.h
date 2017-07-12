@@ -3,10 +3,12 @@
 #pragma once
 class Simulation {
 private:
+	int Turn = 0;
 	int MaxTurn;
     int clock;
 	int waitTime;
 	int randomInt;
+	int floors;
     double Frequency;
     std::list<User> simPassengers;
    
