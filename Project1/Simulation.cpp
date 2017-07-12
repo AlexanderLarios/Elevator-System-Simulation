@@ -46,9 +46,9 @@ void Simulation::addTurns() {
 }
 
 void Simulation::simulate(){ 
-	turns = 1;
-	while(turns < maxTurns){
-		cout << "Turn #" << turns << endl;
+	turn = 1;
+	while(turn < maxTurns){
+		cout << "Turn #" << turn << endl;
 		if (spawnPassenger()) {
 			cout << "Passanger spawned on floor:" << start << endl;
 		}
@@ -59,9 +59,10 @@ void Simulation::simulate(){
    
 		//Increment the number of turns for sim and for passangers
 		addTurns();
-		turns++;
+		turn++;
 
    }
-	cout << "" total
+	cout << "Total Turns:" << turn << endl;
+	cout << "Average Wait Time:" << endl;
 }
 
