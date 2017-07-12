@@ -14,12 +14,13 @@ private:
 	int end;
     double Frequency;
 	Elevator elevator = Elevator(floors, 1);
-    std::list<Passenger> simPassengers;
+    std::list<Passenger> passengers;
    
 public:
     Simulation(int elevatorFloor_, int MaxTurns_, double Frequency_);
+	void addTurns();
 	int getWaitTime();
-    void Simulate();
+    void simulate();
     bool spawnPassenger ();
 
   

@@ -32,14 +32,20 @@ bool Simulation :: spawnPassenger (){
 			direction = -1;
 		}
 		//Call Constructor
-		simPassengers.push_back(Passenger(start, end, direction));
+		passengers.push_back(Passenger(start, end, direction));
 		elevator.called(start, direction);
 		return true;
     }
 	return false;
 }
+//increments all passangers turns by 1
+void Simulation::addTurns() {
+	for (list<Passenger>::iterator it = passengers.begin(); it != passengers.end(); ++it) {
+		it->addTurn;
+	}
+}
 
-void Simulation :: Simulate (){ 
+void Simulation::simulate(){ 
 	int turns = 0;
 	while(turns < maxTurns){
 		if (spawnPassenger()) {
@@ -50,8 +56,10 @@ void Simulation :: Simulate (){
 			cout << "Elevator door Opened on floor" << elevator.getCurrentFloor()<<endl;
 		}
    
-    //Increment the number of turns
-      turns++;
+		//Increment the number of turns for sim and for passangers
+		addTurns();
+		turns++;
+
    }
 }
 
