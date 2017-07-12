@@ -1,7 +1,7 @@
 // Simulation.h 
 // CS303 Project 1
 
-#include "Simulator.h"
+#include "Simulation.h"
 #include "Random.h"
 /*
 int timeWaited(){
@@ -33,7 +33,7 @@ newFunction(){
   
 }
 */
- void Simulation :: Simulation (int elevatorFloor_, int MaxTurns_, double Frequency_)
+ void Simulation :: Simulate (int elevatorFloor_, int MaxTurns_, double Frequency_)
  {  
     elevatorFloor = elevatorFloor_;
     MaxTurns = MaxTurns_;
