@@ -3,6 +3,7 @@
 
 #include "Simulation.h"
 #include "Random.h"
+#include "Passenger.h"
 
 
 //Constructor
@@ -12,6 +13,11 @@ Simulation::Simulation(int floors_ , int MaxTurns_, double Frequency_)
     maxTurns = MaxTurns_;
     Frequency = Frequency_;
  }
+
+int Simulation::getWaitTime() {
+	return waitTime;
+}
+
 bool Simulation :: spawnPassenger ()
 {  //50% chance to spawn a new
 	randInt = randomInt();
@@ -25,14 +31,14 @@ bool Simulation :: spawnPassenger ()
 		else {
 			direction = -1;
 		}
-		//Call 
+		//Call Constructor
 		simPassengers.push_back(Passanger(start, end, direction));
     }
    
      
 
     //pushback user contructor into the list container
-    Passengers.push_back(Passenger(start, end, direction));
+    simPassengers.push_back(Passenger(start, end, direction));
     Elevator.called(start, direction);
    
 }

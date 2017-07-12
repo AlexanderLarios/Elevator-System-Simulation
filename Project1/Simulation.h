@@ -1,4 +1,5 @@
 #include <list>
+#include "Elevator.h"
 #pragma once
 class Simulation {
 private:
