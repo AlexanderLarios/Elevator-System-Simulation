@@ -16,7 +16,6 @@ public:
     int waitTime;
     int get_arrival_time (){ return arrival_time;}
     int get_waiting_time (){ return waiting_time;}
-   
     void Simulation :: Simulation (int elevatorFloor, int MaxTurns, double Frequency );
     bool Simulation :: genuser ();
   

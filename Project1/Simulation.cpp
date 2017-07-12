@@ -1,7 +1,7 @@
 // Simulation.h 
 // CS303 Project 1
 
-#include "Simulator.h"
+#include "Simulation.h"
 #include "Random.h"
 /*
 int timeWaited(){
