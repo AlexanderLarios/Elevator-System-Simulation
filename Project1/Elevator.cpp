@@ -68,14 +68,12 @@ bool Elevator::dropOff(){
 	if (direction == 1 ){
 		list<int>::iterator it = upList.begin();
 		while (it != upList.end()) {
-		// Remove elements while iterating
 		if ((*it) == currentFloor) {
-		// erase() makes the passed iterator invalid
-		// But returns the iterator to the next of deleted element
-		it = upList.erase(it);
-		return true;
-		} else
-		it++;
+			it = upList.erase(it);
+			return true;
+		}
+		else
+			it++;
 		}
 		return false;
 		
@@ -83,10 +81,7 @@ bool Elevator::dropOff(){
 	else if (direction == -1) {
 		list<int>::iterator it = downList.begin();
 		while (it != downList.end()) {
-			// Remove elements while iterating
 			if ((*it) == currentFloor) {
-				// erase() makes the passed iterator invalid
-				// But returns the iterator to the next of deleted element
 				it = downList.erase(it);
 				return true;
 			}
@@ -95,7 +90,7 @@ bool Elevator::dropOff(){
 		}
 		return false;
 	}
-	else 
+	else
 		return false;
 }
 
@@ -158,9 +153,9 @@ bool Elevator::process(){
 			moveDown();
 		}
 	}
-	//checks to see if the current floor is a destination from appropriate vector.
+	//checks to see if the current floor is in the direction lists.
 	else if (dropOff()) {
-		//call open for sims to get off
+		//return true so the simulation knows to check passangers
 		open();
 	}
 	else {
