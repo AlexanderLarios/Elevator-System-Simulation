@@ -8,7 +8,6 @@
 #include "Elevator.h"
 #include "Simulation.h"
 #include "Passenger.h"
-#include "Random.h"
 using namespace std;
 
 //interface functions
@@ -43,7 +42,8 @@ int main(){
 			levels = 10;
 			spawnRate = 50;
 			maxTurns = 15;
-			Simulation(levels, maxTurns, spawnRate);
+			Simulation Sim = Simulation(levels, maxTurns, spawnRate);
+			Sim.simulate();
 		}
 		else if (choice == 2)
 		{

@@ -1,5 +1,6 @@
 #include <list>
 #include "Elevator.h"
+#include "Passenger.h"
 #pragma once
 class Simulation {
 private:
@@ -14,11 +15,10 @@ private:
     int spawnRate;
 	std::list<Passenger> passengers;
 	Elevator elevator = Elevator(floors, 1);
-	std::list<Passenger>::iterator it;
 
 public:
     Simulation(int floors_, int maxTurns_, int spawnRate_);
-	void addTurns();
+	//void addTurns();
 	int getWaitTime();
     void simulate();
     bool spawnPassenger ();
