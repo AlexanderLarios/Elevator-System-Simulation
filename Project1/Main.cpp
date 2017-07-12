@@ -8,26 +8,25 @@
 #include "Elevator.h"
 #include "Simulation.h"
 #include "Passenger.h"
-#include "Random.h"
 using namespace std;
 
 //interface functions
 //Global variables
 //Main loop
-int main()
-{
+int main(){
+	
 	cout << "Welcome To Elevator System Management..." << endl;
 	int choice; //choice from menu
 	int levels;//Floors in building
 	int maxTurns;
 	int defaultFloor;
-	int Frequency;
+	int spawnRate;
 	do // Main do while loop until exit is choosen
 	{
 		//Displaying Options for the menu
 		
 		cout << "Main Menu" << endl;
-		cout << "1) Run Elevator Simulation 1 " << endl;
+		cout << "1) Run Elevator Simulation Test " << endl;
 		cout << "2) Run Elevator Simulation 2 " << endl;
 		cout << "3) Run Custom Elevator Simulation" << endl;
 		cout << "4) Exit Program " << endl;
@@ -41,6 +40,10 @@ int main()
 			//Call sim function with predetermined perameter set 1
 			cout << "Elevator Simulation 1" << endl;
 			levels = 10;
+			spawnRate = 50;
+			maxTurns = 15;
+			Simulation Sim = Simulation(levels, maxTurns, spawnRate);
+			Sim.simulate();
 		}
 		else if (choice == 2)
 		{

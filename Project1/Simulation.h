@@ -1,24 +1,24 @@
 #include <list>
 #include "Elevator.h"
+#include "Passenger.h"
 #pragma once
 class Simulation {
 private:
-	int Turn = 0;
+	int turn = 0;
 	int maxTurns;
-    int clock;
 	int waitTime;
 	int randInt;
 	int floors;
 	int direction;
 	int start;
 	int end;
-    double Frequency;
+    int spawnRate;
+	std::list<Passenger> passengers;
 	Elevator elevator = Elevator(floors, 1);
-    std::list<Passenger> passengers;
-   
+
 public:
-    Simulation(int floors_, int MaxTurns_, double Frequency_);
-	void addTurns();
+    Simulation(int floors_, int maxTurns_, int spawnRate_);
+	//void addTurns();
 	int getWaitTime();
     void simulate();
     bool spawnPassenger ();

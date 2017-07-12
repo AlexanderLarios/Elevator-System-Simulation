@@ -7,11 +7,11 @@
 #include <iostream>
 using namespace std;
 //Constructor
-Simulation::Simulation(int floors_ , int MaxTurns_, double Frequency_)
+Simulation::Simulation(int floors_, int maxTurns_, int spawnRate_)
  {  
     floors = floors_;
-    maxTurns = MaxTurns_;
-    Frequency = Frequency_;
+    maxTurns = maxTurns_;
+    spawnRate = spawnRate_;
  }
 
 int Simulation::getWaitTime() {
@@ -20,8 +20,8 @@ int Simulation::getWaitTime() {
 
 bool Simulation :: spawnPassenger (){  
 	randInt = randomInt();
-	//50% chance to spawn a new
-    if(randInt <= 50){
+	//spawnRate% chance to spawn a new passenger
+    if(randInt <= spawnRate){
 		//random numbers to generate starting and ending floors
 		start = randomFloor(floors);
 		end =randomFloor(floors);
@@ -38,16 +38,19 @@ bool Simulation :: spawnPassenger (){
     }
 	return false;
 }
+
 //increments all passangers turns by 1
+/*
 void Simulation::addTurns() {
-	for (list<Passenger>::iterator it = passengers.begin(); it != passengers.end(); ++it) {
+	for (std::list<Passenger>::iterator it; it = passengers.front(); it != passengers.back(); ++it) {
 		it->addTurn;
 	}
 }
-
+*/
 void Simulation::simulate(){ 
-	int turns = 0;
-	while(turns < maxTurns){
+	turn = 1;
+	while(turn < maxTurns){
+		cout << "Turn #" << turn << endl;
 		if (spawnPassenger()) {
 			cout << "Passanger spawned on floor:" << start << endl;
 		}
@@ -57,9 +60,11 @@ void Simulation::simulate(){
 		}
    
 		//Increment the number of turns for sim and for passangers
-		addTurns();
-		turns++;
+		//addTurns();
+		turn++;
 
    }
+	cout << "Total Turns:" << turn << endl;
+	cout << "Average Wait Time:" << endl;
 }
 

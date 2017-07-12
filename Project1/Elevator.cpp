@@ -3,6 +3,7 @@
 // Define that.
 #include "Elevator.h"
 #include <iterator>
+#include <iostream>
 using namespace std;
 //constructor
 Elevator::Elevator(int floors_, int defaultFloor_) 
@@ -98,10 +99,12 @@ bool Elevator::dropOff(){
 void Elevator::moveUp(){
 	currentFloor++;
 	direction = 1;
+	cout << "Elevator Moved up to floor" << currentFloor << endl;
 }
 void Elevator::moveDown(){
 	currentFloor--;
 	direction = -1;
+	cout << "Elevator Moved down to floor" << currentFloor << endl;
 }
 //add floor as a destination accessed by sim interface inside car.
 void Elevator::goToFloor(int floor_) {
