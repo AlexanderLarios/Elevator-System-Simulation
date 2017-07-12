@@ -1,8 +1,8 @@
-#include "User.h"
+#include "Passenger.h"
 //Constructor
-User::User(int defaultFloor, int finalFloor, int direction_){
-    startFloor = defaultFloor;
-    endFloor = finalFloor;
+User::User(int startFloor_, int endFloor_, int direction_){
+    startFloor = startFloor_;
+    endFloor = endFloor_;
     pickedUp = false;
     direction = direction_;
     }
