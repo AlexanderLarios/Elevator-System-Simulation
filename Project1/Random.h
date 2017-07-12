@@ -1,25 +1,15 @@
-//From airline simulation.
-#include <cstdlib>
-#include <ctime>
-
+#include <random>
 class Random {
-
+private:
+    int randoint;
 public:
-
+    // semi random int between 1and 100
 	Random() {
-		std::srand(std::time(0));
+        randoint = rand() % 100 + 1;
 	}
-
-	Random(int seed) {
-		std::srand(seed);
-	}
-
-	int next_int(int n) {
-		return int(next_double() * n);
-	}
-
-	double next_double() {
-		double num= double(std::rand()) / RAND_MAX;
-		return num;
-	}
+    // semi random number in range bet
+    Random(int floors) {
+        randoint = rand() % floors + 1;
+    }
+};
   
