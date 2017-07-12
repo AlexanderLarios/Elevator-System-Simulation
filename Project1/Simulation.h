@@ -12,11 +12,12 @@ private:
 	int start;
 	int end;
     int spawnRate;
+	std::list<Passenger> passengers;
 	Elevator elevator = Elevator(floors, 1);
-	std::list<class Passenger> passengers;
-	std::list<class Passenger>::iterator it;
+	std::list<Passenger>::iterator it;
+
 public:
-    Simulation(int floors_, int MaxTurns_, double Frequency_);
+    Simulation(int floors_, int maxTurns_, int spawnRate_);
 	void addTurns();
 	int getWaitTime();
     void simulate();

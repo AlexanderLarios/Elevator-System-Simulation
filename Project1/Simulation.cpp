@@ -7,7 +7,7 @@
 #include <iostream>
 using namespace std;
 //Constructor
-Simulation::Simulation(int floors_ , int maxTurns_, int spawnRate_)
+Simulation::Simulation(int floors_, int maxTurns_, int spawnRate_)
  {  
     floors = floors_;
     maxTurns = maxTurns_;

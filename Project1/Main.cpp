@@ -14,8 +14,7 @@ using namespace std;
 //interface functions
 //Global variables
 //Main loop
-int main()
-{
+int main(){
 	
 	cout << "Welcome To Elevator System Management..." << endl;
 	int choice; //choice from menu
