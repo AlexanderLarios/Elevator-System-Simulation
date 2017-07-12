@@ -59,8 +59,10 @@ public:
 	
 	int open();
 	//
-	bool checkUkUp(list<int>& upList_);
-	bool checkUkDown(list<int>& downList_);
+	bool checkUkUp();
+    
+	bool checkUkDown();
+    
 	bool checkFloor(list<int>& directionList);
 	
 

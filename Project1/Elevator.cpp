@@ -31,7 +31,6 @@ int Elevator::getDirection() {
 void Elevator::setDirection(int direction_) {
 	direction = direction_;
 }
-
 //called by sim interface. adds pick up request to directional vector
 void Elevator::called(int floor_, int direction_){
 	//add floor to proper list
@@ -108,8 +107,8 @@ void Elevator::goToFloor(int floor_) {
 }
 
 //Checks to see if Uk > 0 for upList
-bool Elevator::checkUkUp(list<int>& upList_) {
-	for (list<int>::iterator it = upList_.begin(); it != upList_.end(); ++it) {
+bool Elevator::checkUkUp() {
+	for (list<int>::iterator it = upList.begin(); it != upList.end(); ++it) {
 		if (*it > currentFloor) {
 			return true;
 		}
@@ -118,8 +117,8 @@ bool Elevator::checkUkUp(list<int>& upList_) {
 	
 }
 //Checks to see if Uk < 0 for Down List
-bool Elevator::checkUkDown(list<int>& downList_) {
-	for (list<int>::iterator it = downList_.begin(); it != downList_.end(); ++it) {
+bool Elevator::checkUkDown() {
+	for (list<int>::iterator it = downList.begin(); it != downList.end(); ++it) {
 		if (*it < currentFloor) {
 			return true;
 		}
@@ -129,10 +128,10 @@ bool Elevator::checkUkDown(list<int>& downList_) {
 }
 //allows sims to get out. have not created them yet though.
 int Elevator::open() {
- 
+    return true;
 }
 // logic run by elevator when it reaches a new floor or when released from idle
-int Elevator::process(){
+bool Elevator::process(){
 	//If the elevator is idle return it to its default floor
 	if(upList.empty() && downList.empty()) {
 		if(currentFloor == defaultFloor){
@@ -153,10 +152,10 @@ int Elevator::process(){
 		open();
 	}
 	else {
-		if(direction == 1 && checkUkUp){
+        if(direction == 1 && this->checkUkUp() ==true){
 			moveUp();
 		}
-		else if (direction == -1 && checkUkDown) {
+		else if (direction == -1 && Elevator.checkUkDow() == true) {
 			moveDown();
 		}
 		else{
@@ -165,6 +164,7 @@ int Elevator::process(){
 			}
 			else {
 				moveDown();
+    return false;
 			}
 		}
 	}
