@@ -2,9 +2,7 @@
 //Elevator class header.
 //Declare that.
 #pragma once
-#include <list>
-#include <iterator>
-using namespace std;
+
 class Elevator {
 	
 private:
@@ -63,7 +61,7 @@ public:
     
 	bool checkUkDown();
     
-	bool checkFloor(list<int>& directionList);
+	bool checkFloor();
 	
 
 };
