@@ -5,7 +5,6 @@ class Simulation {
 private:
 	int Turn = 0;
 	int maxTurns;
-    int clock;
 	int waitTime;
 	int randInt;
 	int floors;
