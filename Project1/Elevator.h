@@ -2,14 +2,14 @@
 //Elevator class header.
 //Declare that.
 #pragma once
-
+#include <list>
 class Elevator {
 	
 private:
 	//Lists for up and down
-	std::list<int> upList;
-	std::list<int> downList;
-	// more members
+    std::list<int> upList;
+    std::list<int> downList;
+    // more members
 	int defaultFloor=1;
 	int currentFloor=1;
 	int direction=0;
