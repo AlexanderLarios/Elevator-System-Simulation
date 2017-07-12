@@ -2,7 +2,7 @@
 class Passenger{
 //Private members
 private:
-    int waitingTime;
+    int turns;
     int direction;
     int startFloor;
     int endFloor;
@@ -11,10 +11,9 @@ private:
 public:
     //constructor
     Passenger(int defaultFloor, int finalFloor, int direction_);
-    //setter
-    void setWT(int wt);
+    void addTurn();
     //getter
-    int getWT();
+    int getTurns();
     int getStartFloor();
     int getEndFloor();
     int getDirection();

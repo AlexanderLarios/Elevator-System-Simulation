@@ -8,13 +8,13 @@ Passenger::Passenger(int startFloor_, int endFloor_, int direction_){
     }
 
 //Setters
-void Passenger::setWT(int wt){
-    waitingTime = wt;
+void Passenger::addTurn(){
+	turns++;
     }
 
 //Getters
-int Passenger::getWT(){
-    return waitingTime;
+int Passenger::getTurns(){
+    return turns;
 }
 
 int Passenger::getStartFloor(){

@@ -21,6 +21,7 @@ public:
 	int getWaitTime();
     void Simulate();
     bool spawnPassenger ();
+
   
   
 };
