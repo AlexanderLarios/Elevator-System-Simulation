@@ -28,7 +28,7 @@ int Elevator::getDirection() {
 	return direction;
 }
 //overides direction of elevator
-int Elevator::setDirection(int direction_) {
+void Elevator::setDirection(int direction_) {
 	direction = direction_;
 }
 
@@ -129,7 +129,7 @@ bool Elevator::checkUkDown(list<int>& downList_) {
 }
 //allows sims to get out. have not created them yet though.
 int Elevator::open() {
-	return floor, direction;	
+ 
 }
 // logic run by elevator when it reaches a new floor or when released from idle
 int Elevator::process(){

@@ -37,7 +37,7 @@ public:
 	int getDirection();
 	
 	//overides direction of elevator
-	int setDirection(int direction_);
+	void setDirection(int direction_);
 	
 	//Change default floor
 	void SetDefaultFloor(int defaultFloor_);
