@@ -12,13 +12,9 @@ private:
    
 public:
     Simulation(int elevatorFloor_, int MaxTurns_, double Frequency_);
-    int elevatorFloor;
-    
-  
-    int get_arrival_time (){ return arrival_time;}
-    int get_waiting_time (){ return waiting_time;}
+	int getWaitTime();
     void Simulate();
-    bool genuser ();
+    bool genUser ();
   
   
 };
