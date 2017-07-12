@@ -40,7 +40,7 @@ bool Simulation :: spawnPassenger (){
 }
 //increments all passangers turns by 1
 void Simulation::addTurns() {
-	for (list<Passenger>::iterator it = passengers.front(); it != passengers.back(); ++it) {
+	for (it = passengers.front(); it != passengers.back(); ++it) {
 		it->addTurn;
 	}
 }
