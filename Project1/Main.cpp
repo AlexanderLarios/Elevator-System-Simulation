@@ -43,7 +43,7 @@ int main()
 			levels = 10;
 			spawnRate = 50;
 			maxTurns = 15;
-			Simulation(levels,maxTurns,spawnRate)
+			Simulation(levels, maxTurns, spawnRate);
 		}
 		else if (choice == 2)
 		{

@@ -12,6 +12,7 @@ private:
 	int start;
 	int end;
     int spawnRate;
+	int turns;
 	Elevator elevator = Elevator(floors, 1);
     std::list<Passenger> passengers;
    

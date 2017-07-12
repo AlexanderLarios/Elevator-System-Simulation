@@ -46,8 +46,9 @@ void Simulation::addTurns() {
 }
 
 void Simulation::simulate(){ 
-	int turns = 0;
+	turns = 1;
 	while(turns < maxTurns){
+		cout << "Turn #" << turns << endl;
 		if (spawnPassenger()) {
 			cout << "Passanger spawned on floor:" << start << endl;
 		}
@@ -61,5 +62,6 @@ void Simulation::simulate(){
 		turns++;
 
    }
+	cout << "" total
 }
 
