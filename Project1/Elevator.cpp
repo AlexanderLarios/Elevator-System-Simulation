@@ -102,21 +102,27 @@ void Elevator::goToFloor(int floor_) {
 
 //Checks to see if Uk > 0 for upList
 void Elevator::checkUkUp() {
-	for (list<int>::iterator it = upList.begin(); it != upList.end(); ++it) {
+	for (list<int>::iterator it = upList.begin(); it != upList.end();) {
 		if (*it >= currentFloor) {
 			eQueue.push_back(*it);
 			eQueue.sort();
-			it=upList.erase(it);
+			it = upList.erase(it);
+		}
+		else {
+			++it;
 		}
 	}	
 }
 //Checks to see if Uk < 0 for Down List
 void Elevator::checkUkDown() {
-	for (list<int>::iterator it = downList.begin(); it != downList.end(); ++it) {
+	for (list<int>::iterator it = downList.begin(); it != downList.end();) {
 		if (*it <= currentFloor) {
 			eQueue.push_back(*it);
 			eQueue.sort(std::greater<int>());
-			it = upList.erase(it);
+			it = downList.erase(it);
+		}
+		else {
+			++it;
 		}
 	}
 }
