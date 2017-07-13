@@ -11,7 +11,7 @@ Elevator::Elevator(int floors_, int defaultFloor_)
 	floors = floors_;
 	defaultFloor = defaultFloor_;
 	currentFloor = defaultFloor_;
-	direction = -1;
+	direction = 1;
 }
 //Change default floor
 void Elevator::SetDefaultFloor(int defaultFloor_) {
