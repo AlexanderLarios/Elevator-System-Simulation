@@ -28,3 +28,6 @@ int Passenger::getEndFloor(){
 int Passenger::getDirection(){
     return direction;
 }
+bool Passenger::getPickedUp(){
+    return pickedUp;
+}

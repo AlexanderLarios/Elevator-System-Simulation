@@ -63,10 +63,17 @@ void Simulation::simulate(){
 
 		if (elevator.process()) {
 			cout << "Elevator door Opened on floor" << elevator.getCurrentFloor()<<endl;
+            if (!passengers.empty()){
+                for (std::list<Passenger>::iterator it= passengers.begin(); it != passengers.end(); ++it){
+                    Passenger psg = *it;
+                    psg.get();
+                }
+            }
+
 		}
    
 		//Increment the number of turns for sim and for passangers
-		//addTurns();
+		addTurns();
 		turn++;
 
    }

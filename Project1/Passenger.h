@@ -17,5 +17,6 @@ public:
     int getStartFloor();
     int getEndFloor();
     int getDirection();
+    bool getPickedUp();
 };
 
