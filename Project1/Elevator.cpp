@@ -189,6 +189,7 @@ bool Elevator::process(){
 
 			}
 			else if (direction == 1 && this->checkUkDown() == true) {
+				direction = -1;
 				if (dropOff()) {
 					open();
 				}
