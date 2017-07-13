@@ -51,23 +51,19 @@ void Elevator::called(int floor_, int callDirection){
 			}
 		}
 }
-bool Elevator::checkFloor(){
-	if (direction == 1) {
-		for (list<int>::iterator it = upList.begin(); it != upList.end(); ++it) {
-			if (*it == currentFloor) {
-				return true;
+void Elevator::queuePushUp(){
+		upList.sort();
+		while (!upList.empty()){
+			eQueue.push_back(upList.front());
+			upList.pop_front();
 			}
-		}
+}
+void Elevator::queuePushDown() {
+	downList.sort();
+	while (!downList.empty()) {
+		eQueue.push_back(downList.back());
+		downList.pop_back();
 	}
-	else if (direction == -1){
-		for (list<int>::iterator it = downList.begin(); it != downList.end(); ++it) {
-			if (*it == currentFloor) {
-				return true;
-			}
-		}
-	}
-	return false;
-
 }
 
 //if floor is destination it pops the int floor from list and sends Open door /Drop off to sim
@@ -151,13 +147,13 @@ bool Elevator::process(){
 		return false;
 	}
 	 if (eQueue.empty()) {
-		if (direction == 1) {
+		if (direction == 1 && !downList.empty()) {
 			direction =-1;
-			checkUkDown();
+			queuePushDown();
 		}
-		else if (direction == -1) {
+		else if (direction == -1 && !upList.empty()) {
 			direction = 1;
-			checkUkUp();
+			queuePushUp();
 		}
 		else {
 			if (!upList.empty()) {
@@ -168,7 +164,7 @@ bool Elevator::process(){
 			}
 			else if (!downList.empty()) {
 				direction = -1;
-				downList.sort(std::greater<int>());
+				downList.sort();
 				eQueue.push_back(downList.front());
 				downList.pop_front();
 			}

@@ -59,7 +59,8 @@ public:
     
 	void checkUkDown();
     
-	bool checkFloor();
+	void queuePushUp();
+	void queuePushDown();
 	
 
 };
