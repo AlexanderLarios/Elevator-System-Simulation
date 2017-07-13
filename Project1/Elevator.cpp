@@ -146,12 +146,12 @@ bool Elevator::process(){
 	}
 	else if (eQueue.empty()) {
 		if (direction == 1) {
-			direction == -1;
+			direction =-1;
 			checkUkDown();
 		}
 		else if (direction == -1) {
-			direction == 1;
-			checkUkUp;
+			direction = 1;
+			checkUkUp();
 		}
 
 	}
