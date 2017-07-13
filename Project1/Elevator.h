@@ -9,6 +9,7 @@ private:
 	//Lists for up and down
     std::list<int> upList;
     std::list<int> downList;
+	std::list<int> queue;
     // more members
 	int defaultFloor=1;
 	int currentFloor=1;

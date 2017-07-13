@@ -141,17 +141,20 @@ int Elevator::open() {
 // logic run by elevator when it reaches a new floor or when released from idle
 bool Elevator::process(){
 	//If the elevator is idle return it to its default floor
-	if(upList.empty() && downList.empty()) {
+	if(upList.empty() && downList.empty() && queue.empty()) {
 		if(currentFloor == defaultFloor){
 			direction = 0;
+			cout << "Elevator Idle" << endl;
 		}
 		else if (currentFloor < defaultFloor) {
 			direction = 0;
 			moveUp();
+			cout << "Elevator Idle returning to default floor" << endl;
 		}
 		else {
 			direction = 0;
 			moveDown();
+			cout << "Elevator Idle returning to default floor" << endl;
 		}
 		return false;
 	}
