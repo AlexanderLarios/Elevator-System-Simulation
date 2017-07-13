@@ -66,11 +66,11 @@ bool Elevator::checkFloor(){
 
 //if floor is destination it pops the int floor from list and sends Open door /Drop off to sim
 bool Elevator::dropOff(){
-	if (direction == 1 ){
+	if (direction == 1 && !upList.empty()){
 		list<int>::iterator it = upList.begin();
 		while (it != upList.end()) {
 		if ((*it) == currentFloor) {
-			upList.erase(it);
+			upList.remove(currentFloor);
 			return true;
 		}
 		else
@@ -79,11 +79,11 @@ bool Elevator::dropOff(){
 		return false;
 		
 	}
-	else if (direction == -1) {
+	else if (direction == -1 && !upList.empty()) {
 		list<int>::iterator it = downList.begin();
 		while (it != downList.end()) {
 			if ((*it) == currentFloor) {
-				downList.erase(it);
+				downList.remove(currentFloor);
 				return true;
 			}
 			else
@@ -98,12 +98,10 @@ bool Elevator::dropOff(){
 //Moves elevator up or down a floor by altering current floor and moving in that floors direction
 void Elevator::moveUp(){
 	currentFloor++;
-	direction = 1;
 	cout << "Elevator Moved up to floor" << currentFloor << endl;
 }
 void Elevator::moveDown(){
 	currentFloor--;
-	direction = -1;
 	cout << "Elevator Moved down to floor" << currentFloor << endl;
 }
 //add floor as a destination accessed by sim interface inside car.
@@ -148,11 +146,11 @@ bool Elevator::process(){
 			direction = 0;
 		}
 		else if (currentFloor < defaultFloor) {
-			direction = 1;
+			direction = 0;
 			moveUp();
 		}
 		else {
-			direction = -1;
+			direction = 0;
 			moveDown();
 		}
 		return false;
@@ -171,9 +169,11 @@ bool Elevator::process(){
 		}
 		else if (direction == 0) {
 			if (this->checkUkUp() == true) {
+				direction = 1;
 				moveUp();
 			}
 			else if (this->checkUkDown() == true) {
+				direction = -1;
 				moveDown();
 			}
 		}
@@ -197,10 +197,13 @@ bool Elevator::process(){
 					moveDown();
 				}
 			}
+			//problem child
 			else if (upList.empty() && !downList.empty()) {
+				direction = 1;
 				moveUp();
 			}
 			else if (!upList.empty() && downList.empty()) {
+				direction = -1;
 				moveDown();
 			}
 			
