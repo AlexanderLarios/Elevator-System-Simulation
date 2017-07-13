@@ -70,7 +70,7 @@ bool Elevator::dropOff(){
 		list<int>::iterator it = upList.begin();
 		while (it != upList.end()) {
 		if ((*it) == currentFloor) {
-			it = upList.erase(it);
+			upList.erase(it);
 			return true;
 		}
 		else
@@ -83,7 +83,7 @@ bool Elevator::dropOff(){
 		list<int>::iterator it = downList.begin();
 		while (it != downList.end()) {
 			if ((*it) == currentFloor) {
-				it = downList.erase(it);
+				downList.erase(it);
 				return true;
 			}
 			else
@@ -173,7 +173,7 @@ bool Elevator::process(){
 			if (this->checkUkUp() == true) {
 				moveUp();
 			}
-			if (this->checkUkDown() == true) {
+			else if (this->checkUkDown() == true) {
 				moveDown();
 			}
 		}
@@ -197,6 +197,13 @@ bool Elevator::process(){
 					moveDown();
 				}
 			}
+			else if (upList.empty() && !downList.empty()) {
+				moveUp();
+			}
+			else if (!upList.empty() && downList.empty()) {
+				moveDown();
+			}
+			
 		}
 		return false;
 	}
