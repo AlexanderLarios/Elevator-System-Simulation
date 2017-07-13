@@ -41,7 +41,7 @@ int main(){
 			cout << "Elevator Simulation 1" << endl;
 			levels = 10;
 			spawnRate = 50;
-			maxTurns = 15;
+			maxTurns = 30;
 			Simulation Sim = Simulation(levels, maxTurns, spawnRate);
 			Sim.simulate();
 		}

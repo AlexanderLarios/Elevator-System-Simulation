@@ -9,13 +9,12 @@ private:
 	//Lists for up and down
     std::list<int> upList;
     std::list<int> downList;
+	std::list<int> eQueue;
     // more members
 	int defaultFloor=1;
 	int currentFloor=1;
 	int direction=0;
 	int floors;
-	
-
 
 public:
 	
@@ -23,7 +22,7 @@ public:
 	Elevator(int floors_, int defaultFloor_);
 	
 	//function that is called by the outer interface by sim
-	void called(int floor_, int direction_);
+	void called(int floor_, int callDirection);
 	
 	//returns default floor of elevator
 	int getDefaultFloor();
@@ -55,13 +54,13 @@ public:
 	//Moves elevator down a floor
 	void moveDown();
 	
-	int open();
 	//
-	bool checkUkUp();
+	void checkUkUp();
     
-	bool checkUkDown();
+	void checkUkDown();
     
-	bool checkFloor();
+	void queuePushUp();
+	void queuePushDown();
 	
 
 };

@@ -25,6 +25,9 @@ bool Simulation :: spawnPassenger (){
 		//random numbers to generate starting and ending floors
 		start = randomFloor(floors);
 		end =randomFloor(floors);
+		while (start == end) {
+			end = randomFloor(floors);
+		}
 		if (start < end) {
 			direction = 1;
 		}
@@ -52,7 +55,7 @@ void Simulation::simulate(){
 	while(turn < maxTurns){
 		cout << "Turn #" << turn << endl;
 		if (spawnPassenger()) {
-			cout << "Passanger spawned on floor:" << start << endl;
+			cout << "Passanger spawned on floor:" << start << "Destination:" << end<< endl;
 		}
 
 		if (elevator.process()) {

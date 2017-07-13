@@ -4,6 +4,7 @@
 #include "Elevator.h"
 #include <iterator>
 #include <iostream>
+#include <functional>
 using namespace std;
 //constructor
 Elevator::Elevator(int floors_, int defaultFloor_) 
@@ -11,7 +12,7 @@ Elevator::Elevator(int floors_, int defaultFloor_)
 	floors = floors_;
 	defaultFloor = defaultFloor_;
 	currentFloor = defaultFloor_;
-	direction = -1;
+	direction = 0;
 }
 //Change default floor
 void Elevator::SetDefaultFloor(int defaultFloor_) {
@@ -35,75 +36,57 @@ void Elevator::setDirection(int direction_) {
 	direction = direction_;
 }
 //called by sim interface. adds pick up request to directional vector
-void Elevator::called(int floor_, int direction_){
+void Elevator::called(int floor_, int callDirection){
 	//add floor to proper list
-	if(direction_ ==1){
+	if (callDirection == 1) {
 		upList.push_back(floor_);
+		if (callDirection == direction) {
+			checkUkUp();
 		}
-	else if (direction_ ==-1){
+	}
+	else if (callDirection ==-1){
 		downList.push_back(floor_);
+			if (callDirection == direction) {
+				checkUkDown();
+			}
 		}
-
 }
-bool Elevator::checkFloor(){
-	if (direction == 1) {
-		for (list<int>::iterator it = upList.begin(); it != upList.end(); ++it) {
-			if (*it == currentFloor) {
-				return true;
+void Elevator::queuePushUp(){
+		upList.sort();
+		while (!upList.empty()){
+			eQueue.push_back(upList.front());
+			upList.pop_front();
 			}
-		}
+}
+void Elevator::queuePushDown() {
+	downList.sort();
+	while (!downList.empty()) {
+		eQueue.push_back(downList.back());
+		downList.pop_back();
 	}
-	else if (direction == -1){
-		for (list<int>::iterator it = downList.begin(); it != downList.end(); ++it) {
-			if (*it == currentFloor) {
-				return true;
-			}
-		}
-	}
-	return false;
-
 }
 
 //if floor is destination it pops the int floor from list and sends Open door /Drop off to sim
-bool Elevator::dropOff(){
-	if (direction == 1 ){
-		list<int>::iterator it = upList.begin();
-		while (it != upList.end()) {
-		if ((*it) == currentFloor) {
-			it = upList.erase(it);
-			return true;
-		}
-		else
-			it++;
-		}
-		return false;
-		
-	}
-	else if (direction == -1) {
-		list<int>::iterator it = downList.begin();
-		while (it != downList.end()) {
-			if ((*it) == currentFloor) {
-				it = downList.erase(it);
-				return true;
-			}
-			else
-				it++;
-		}
+bool Elevator::dropOff() {
+	if (eQueue.empty()) {
 		return false;
 	}
-	else
+	else if (currentFloor == eQueue.front()) {
+		eQueue.pop_front();
+		return true;
+	}
+	else {
 		return false;
+	}
 }
 
 //Moves elevator up or down a floor by altering current floor and moving in that floors direction
 void Elevator::moveUp(){
 	currentFloor++;
-	direction = 1;
 	cout << "Elevator Moved up to floor" << currentFloor << endl;
 }
 void Elevator::moveDown(){
 	currentFloor--;
-	direction = -1;
 	cout << "Elevator Moved down to floor" << currentFloor << endl;
 }
 //add floor as a destination accessed by sim interface inside car.
@@ -117,74 +100,92 @@ void Elevator::goToFloor(int floor_) {
 }
 
 //Checks to see if Uk > 0 for upList
-bool Elevator::checkUkUp() {
-	for (list<int>::iterator it = upList.begin(); it != upList.end(); ++it) {
-		if (*it > currentFloor) {
-			return true;
+void Elevator::checkUkUp() {
+	for (list<int>::iterator it = upList.begin(); it != upList.end();) {
+		if (*it >= currentFloor) {
+			eQueue.push_back(*it);
+			eQueue.sort();
+			it = upList.erase(it);
 		}
-	}
-	return false;
-	
+		else {
+			++it;
+		}
+	}	
 }
 //Checks to see if Uk < 0 for Down List
-bool Elevator::checkUkDown() {
-	for (list<int>::iterator it = downList.begin(); it != downList.end(); ++it) {
-		if (*it < currentFloor) {
-			return true;
+void Elevator::checkUkDown() {
+	for (list<int>::iterator it = downList.begin(); it != downList.end();) {
+		if (*it <= currentFloor) {
+			eQueue.push_back(*it);
+			eQueue.sort(std::greater<int>());
+			it = downList.erase(it);
+		}
+		else {
+			++it;
 		}
 	}
-	return false;
+}
 
-}
-//allows sims to get out. have not created them yet though.
-int Elevator::open() {
-    return true;
-}
 // logic run by elevator when it reaches a new floor or when released from idle
 bool Elevator::process(){
 	//If the elevator is idle return it to its default floor
-	if(upList.empty() && downList.empty()) {
+	if(upList.empty() && downList.empty() && eQueue.empty()) {
 		if(currentFloor == defaultFloor){
 			direction = 0;
+			cout << "Elevator Idle" << endl;
 		}
 		else if (currentFloor < defaultFloor) {
-			direction = 1;
+			direction = 0;
 			moveUp();
+			cout << "Elevator Idle returning to default floor" << endl;
 		}
 		else {
-			direction = -1;
+			direction = 0;
 			moveDown();
+			cout << "Elevator Idle returning to default floor" << endl;
 		}
 		return false;
 	}
-	//checks to see if the current floor is in the direction lists.
-	else if (dropOff()) {
-		//return true so the simulation knows to check passangers
-		open();
+	 if (eQueue.empty()) {
+		if (direction == 1 && !downList.empty()) {
+			direction =-1;
+			queuePushDown();
+		}
+		else if (direction == -1 && !upList.empty()) {
+			direction = 1;
+			queuePushUp();
+		}
+		else {
+			if (!upList.empty()) {
+				direction = 1;
+				upList.sort();
+				eQueue.push_back(upList.front());
+				upList.pop_front();
+			}
+			else if (!downList.empty()) {
+				direction = -1;
+				downList.sort();
+				eQueue.push_back(downList.front());
+				downList.pop_front();
+			}
+		}
+
 	}
-	else {
-        if(direction == 1 && this->checkUkUp() ==true){
+	//checks to see if the current floor is a destination.
+	if (dropOff()) {
+		return true;
+	}
+	
+	//Movement Phase
+	
+	else if(!eQueue.empty()) {
+        if(eQueue.front() > currentFloor){
 			moveUp();
 		}
-		else if (direction == -1 && this->checkUkDown() == true) {
+		else if (eQueue.front() < currentFloor) {
 			moveDown();
-		}
-		else if (direction == 0) {
-			if (this->checkUkUp() == true) {
-				moveUp();
-			}
-			if (this->checkUkDown() == true) {
-				moveDown();
-			}
-		}
-		else{
-			if (direction == -1) {
-				moveUp();
-			}
-			else {
-				moveDown();
-			}
-		}
+		}	
 		return false;
 	}
+	return false;
 }
