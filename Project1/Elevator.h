@@ -58,9 +58,9 @@ public:
 	
 	int open();
 	//
-	bool checkUkUp();
+	void checkUkUp();
     
-	bool checkUkDown();
+	void checkUkDown();
     
 	bool checkFloor();
 	

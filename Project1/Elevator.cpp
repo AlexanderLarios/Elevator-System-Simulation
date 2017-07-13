@@ -115,24 +115,22 @@ void Elevator::goToFloor(int floor_) {
 }
 
 //Checks to see if Uk > 0 for upList
-bool Elevator::checkUkUp() {
+void Elevator::checkUkUp() {
 	for (list<int>::iterator it = upList.begin(); it != upList.end(); ++it) {
 		if (*it >= currentFloor) {
-			return true;
+			queue.push_back(*it);
+			upList.remove(*it);
 		}
-	}
-	return false;
-	
+	}	
 }
 //Checks to see if Uk < 0 for Down List
-bool Elevator::checkUkDown() {
+void Elevator::checkUkDown() {
 	for (list<int>::iterator it = downList.begin(); it != downList.end(); ++it) {
 		if (*it <= currentFloor) {
-			return true;
+			queue.push_back(*it);
+			downList.remove(*it);	
 		}
 	}
-	return false;
-
 }
 //allows sims to get out. have not created them yet though.
 int Elevator::open() {
@@ -158,14 +156,20 @@ bool Elevator::process(){
 		}
 		return false;
 	}
-	//checks to see if the current floor is in the direction lists.
+	//checks to see if the current floor is a destination.
 	else if (dropOff()) {
 		//return true so the simulation knows to check passangers
 		open();
 	}
+	//Movement Phase
 	else {
-        if(direction == 1 && this->checkUkUp() ==true){
+        if(queue.front() > currentFloor){
+			direction = 1;
 			moveUp();
+		}
+		else if (queue.front() < currentFloor) {
+			direction = -1;
+			moveDown();
 		}
 		else if (direction == -1 && this->checkUkDown() == true) {
 			moveDown();
