@@ -72,8 +72,10 @@ bool Elevator::checkFloor(){
 
 //if floor is destination it pops the int floor from list and sends Open door /Drop off to sim
 bool Elevator::dropOff() {
-	int front = eQueue.front();
-	if (currentFloor == front) {
+	if (eQueue.empty()) {
+		return false;
+	}
+	if (currentFloor == eQueue.front()) {
 		eQueue.pop_front();
 		return true;
 	}
@@ -177,12 +179,11 @@ bool Elevator::process(){
 
 	}
 	//checks to see if the current floor is a destination.
-	 if(!eQueue.empty()){
-		 if (dropOff()) {
-			 //return true so the simulation knows to check passangers
-			 open();
-		 }
+	if (dropOff()) {
+		//return true so the simulation knows to check passangers
+		open();
 	}
+	
 	//Movement Phase
 	
 	else {
