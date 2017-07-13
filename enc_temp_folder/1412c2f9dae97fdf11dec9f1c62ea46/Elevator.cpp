@@ -106,7 +106,7 @@ void Elevator::checkUkUp() {
 		if (*it >= currentFloor) {
 			eQueue.push_back(*it);
 			eQueue.sort();
-			it=upList.erase(it);
+			upList.remove(*it);
 		}
 	}	
 }
@@ -116,7 +116,7 @@ void Elevator::checkUkDown() {
 		if (*it <= currentFloor) {
 			eQueue.push_back(*it);
 			eQueue.sort(std::greater<int>());
-			it = upList.erase(it);
+			downList.remove(*it);	
 		}
 	}
 }
