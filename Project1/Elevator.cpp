@@ -12,7 +12,7 @@ Elevator::Elevator(int floors_, int defaultFloor_)
 	floors = floors_;
 	defaultFloor = defaultFloor_;
 	currentFloor = defaultFloor_;
-	direction = 1;
+	direction = 0;
 }
 //Change default floor
 void Elevator::SetDefaultFloor(int defaultFloor_) {
@@ -72,7 +72,8 @@ bool Elevator::checkFloor(){
 
 //if floor is destination it pops the int floor from list and sends Open door /Drop off to sim
 bool Elevator::dropOff() {
-	if (currentFloor == eQueue.front()) {
+	int front = eQueue.front();
+	if (currentFloor == front) {
 		eQueue.pop_front();
 		return true;
 	}
@@ -150,7 +151,7 @@ bool Elevator::process(){
 		}
 		return false;
 	}
-	else if (eQueue.empty()) {
+	 if (eQueue.empty()) {
 		if (direction == 1) {
 			direction =-1;
 			checkUkDown();
@@ -159,12 +160,28 @@ bool Elevator::process(){
 			direction = 1;
 			checkUkUp();
 		}
+		else {
+			if (!upList.empty()) {
+				direction = 1;
+				upList.sort();
+				eQueue.push_back(upList.front());
+				upList.pop_front();
+			}
+			else if (!downList.empty()) {
+				direction = -1;
+				downList.sort(std::greater<int>());
+				eQueue.push_back(downList.front());
+				downList.pop_front();
+			}
+		}
 
 	}
 	//checks to see if the current floor is a destination.
-	else if (dropOff()) {
-		//return true so the simulation knows to check passangers
-		open();
+	 if(!eQueue.empty()){
+		 if (dropOff()) {
+			 //return true so the simulation knows to check passangers
+			 open();
+		 }
 	}
 	//Movement Phase
 	

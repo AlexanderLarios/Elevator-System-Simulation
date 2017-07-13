@@ -15,8 +15,6 @@ private:
 	int currentFloor=1;
 	int direction=0;
 	int floors;
-	
-
 
 public:
 	
