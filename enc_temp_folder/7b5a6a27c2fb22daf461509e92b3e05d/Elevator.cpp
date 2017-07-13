@@ -184,9 +184,11 @@ bool Elevator::process(){
 	
 	else if(!eQueue.empty()) {
         if(eQueue.front() > currentFloor){
+			direction = 1;
 			moveUp();
 		}
 		else if (eQueue.front() < currentFloor) {
+			direction = -1;
 			moveDown();
 		}	
 		return false;

@@ -54,7 +54,6 @@ public:
 	//Moves elevator down a floor
 	void moveDown();
 	
-	int open();
 	//
 	void checkUkUp();
     
