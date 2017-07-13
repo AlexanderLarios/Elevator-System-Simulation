@@ -43,13 +43,16 @@ bool Simulation :: spawnPassenger (){
 }
 
 //increments all passangers turns by 1
-/*
+
 void Simulation::addTurns() {
-	for (std::list<Passenger>::iterator it; it = passengers.front(); it != passengers.back(); ++it) {
-		it->addTurn;
-	}
+    if (!passengers.empty()){
+        for (std::list<Passenger>::iterator it= passengers.begin(); it != passengers.end(); ++it){
+            Passenger psg = *it;
+            psg.addTurn();
+        }
+    }
 }
-*/
+
 void Simulation::simulate(){ 
 	turn = 1;
 	while(turn < maxTurns){

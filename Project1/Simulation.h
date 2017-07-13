@@ -18,7 +18,7 @@ private:
 
 public:
     Simulation(int floors_, int maxTurns_, int spawnRate_);
-	//void addTurns();
+	void addTurns();
 	int getWaitTime();
     void simulate();
     bool spawnPassenger ();

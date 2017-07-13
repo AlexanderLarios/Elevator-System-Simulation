@@ -19,7 +19,6 @@ int main(){
 	int choice; //choice from menu
 	int levels;//Floors in building
 	int maxTurns;
-	int defaultFloor;
 	int spawnRate;
 	do // Main do while loop until exit is choosen
 	{
