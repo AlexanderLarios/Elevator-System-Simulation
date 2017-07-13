@@ -38,16 +38,18 @@ void Elevator::setDirection(int direction_) {
 //called by sim interface. adds pick up request to directional vector
 void Elevator::called(int floor_, int callDirection){
 	//add floor to proper list
-	if(callDirection ==1){
+	if (callDirection == 1) {
 		upList.push_back(floor_);
-		if direction
-		checkUkUp();
+		if (callDirection == direction) {
+			checkUkUp();
 		}
-	else if (direction_ ==-1){
+	}
+	else if (callDirection ==-1){
 		downList.push_back(floor_);
-		checkUkDown();
+			if (callDirection == direction) {
+				checkUkDown();
+			}
 		}
-
 }
 bool Elevator::checkFloor(){
 	if (direction == 1) {
@@ -142,12 +144,24 @@ bool Elevator::process(){
 		}
 		return false;
 	}
+	else if (eQueue.empty()) {
+		if (direction == 1) {
+			direction == -1;
+			checkUkDown();
+		}
+		else if (direction == -1) {
+			direction == 1;
+			checkUkUp;
+		}
+
+	}
 	//checks to see if the current floor is a destination.
 	else if (dropOff()) {
 		//return true so the simulation knows to check passangers
 		open();
 	}
 	//Movement Phase
+	
 	else {
         if(eQueue.front() > currentFloor){
 			direction = 1;
@@ -156,51 +170,7 @@ bool Elevator::process(){
 		else if (eQueue.front() < currentFloor) {
 			direction = -1;
 			moveDown();
-		}
-		else if (direction == -1 && this->checkUkDown() == true) {
-			moveDown();
-		}
-		else if (direction == 0) {
-			if (this->checkUkUp() == true) {
-				direction = 1;
-				moveUp();
-			}
-			else if (this->checkUkDown() == true) {
-				direction = -1;
-				moveDown();
-			}
-		}
-		else{
-			if (direction == -1 && this->checkUkUp() == true) {
-				direction = 1;
-				if (dropOff()) {
-					open();
-				}
-				else {
-					moveUp();
-				}
-
-			}
-			else if (direction == 1 && this->checkUkDown() == true) {
-				direction = -1;
-				if (dropOff()) {
-					open();
-				}
-				else {
-					moveDown();
-				}
-			}
-			//problem child
-			else if (upList.empty() && !downList.empty()) {
-				direction = 1;
-				moveUp();
-			}
-			else if (!upList.empty() && downList.empty()) {
-				direction = -1;
-				moveDown();
-			}
-			
-		}
+		}	
 		return false;
 	}
 }
