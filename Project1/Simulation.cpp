@@ -66,7 +66,13 @@ void Simulation::simulate(){
             if (!passengers.empty()){
                 for (std::list<Passenger>::iterator it= passengers.begin(); it != passengers.end(); ++it){
                     Passenger psg = *it;
-                    psg.get();
+                    if (psg.getPickedUp()){
+                        if(psg.getEndFloor() == elevator.getCurrentFloor()){
+                            psg.getTurns()
+                            
+                        }
+                        
+                    }
                 }
             }
 
