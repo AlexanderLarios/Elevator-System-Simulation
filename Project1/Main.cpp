@@ -19,17 +19,14 @@ int main(){
 	int choice; //choice from menu
 	int levels;//Floors in building
 	int maxTurns;
-	int defaultFloor;
 	int spawnRate;
 	do // Main do while loop until exit is choosen
 	{
 		//Displaying Options for the menu
 		
 		cout << "Main Menu" << endl;
-		cout << "1) Run Elevator Simulation Test " << endl;
-		cout << "2) Run Elevator Simulation 2 " << endl;
-		cout << "3) Run Custom Elevator Simulation" << endl;
-		cout << "4) Exit Program " << endl;
+		cout << "1) Run Elevator Simulation" << endl;
+		cout << "2) Exit Program " << endl;
 
 		//Ask user to make choice
 		cout << "Please select an option : ";
@@ -44,46 +41,8 @@ int main(){
 			maxTurns = 30;
 			Simulation Sim = Simulation(levels, maxTurns, spawnRate);
 			Sim.simulate();
-		}
-		else if (choice == 2)
-		{
-			// Call sim function with predetermined perameter set 2
-			cout << "Elevator Simulation 2" << endl;
-			levels = 10;
-		}
-		else if (choice == 3)
-		{
-			// Ask user about perameter choices then call sim with user defined perameters
-			cout << "Elevator Simulation 3" << endl;
-			string strInput = "";
-			
-
-			while (true)
-			{
-				cout << "Please enter number of floors that elevator(s) will service:" << endl;
-				getline(cin, strInput);
-
-				// This code converts from string to number safely.
-				stringstream myStream(strInput);
-				if ((myStream >> levels))
-					break;
-				cout << "Invalid input, please try again" << endl;
-			}
-			strInput = "";
-			while (true)
-			{
-				cout << "Please enter how many tunrs you would like sim to run for." << endl;
-				getline(cin, strInput);
-
-				// This code converts from string to number safely.
-				stringstream myStream(strInput);
-				if ((myStream >> maxTurns))
-					break;
-				cout << "Invalid input, please try again" << endl;
-			}
-
-		}
-		else if (choice == 4) //Quit
+            }
+		else if (choice == 2) //Quit
 		{
 			cout << "Closing Elevator System Management..." << endl;
 		}
@@ -92,7 +51,7 @@ int main(){
 			//Displaying error message
 			cout << "Invalid Input" << endl;
 		}
-	} while (choice != 4);  //base case of do-while loop
+	} while (choice != 2);  //base case of do-while loop
 
 	return 0;
 }

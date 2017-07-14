@@ -43,31 +43,52 @@ bool Simulation :: spawnPassenger (){
 }
 
 //increments all passangers turns by 1
-/*
+
 void Simulation::addTurns() {
-	for (std::list<Passenger>::iterator it; it = passengers.front(); it != passengers.back(); ++it) {
-		it->addTurn;
-	}
+    if (!passengers.empty()){
+        for (std::list<Passenger>::iterator it= passengers.begin(); it != passengers.end(); ++it){
+            it ->addTurn();
+        }
+    }
 }
-*/
+
 void Simulation::simulate(){ 
 	turn = 1;
 	while(turn < maxTurns){
 		cout << "Turn #" << turn << endl;
 		if (spawnPassenger()) {
-			cout << "Passanger spawned on floor:" << start << "Destination:" << end<< endl;
+			cout << "Passanger spawned on floor:" << start << " Destination:" << end<< endl;
 		}
 
 		if (elevator.process()) {
 			cout << "Elevator door Opened on floor" << elevator.getCurrentFloor()<<endl;
-		}
-   
-		//Increment the number of turns for sim and for passangers
-		//addTurns();
-		turn++;
+            if (!passengers.empty()){
+                for (std::list<Passenger>::iterator it= passengers.begin(); it != passengers.end(); ++it){
+                    if (it->getPickedUp()){
+                        if(it->getEndFloor() == elevator.getCurrentFloor()){
+                            totalTurns += it->getTurns();
+                            PassengersDelivered++;
+                            avgWT = totalTurns/PassengersDelivered;
+                            // still need to delete it from passangers
+                        }
+                    }
+                    //If elevator door opened to Load Passanger on elevator set picked up to true
+                    else if(!it->getPickedUp()){
+                        if(it->getStartFloor() == elevator.getCurrentFloor()){
+                            it->loadPassenger();
+                            //pick destiniation
+                            elevator.goToFloor(it->getEndFloor());
+                            }
+                        }
+                    }
+                }
 
-   }
+            }
+		//Increment the number of turns for sim and for passangers
+		addTurns();
+		turn++;
+    }
 	cout << "Total Turns:" << turn << endl;
-	cout << "Average Wait Time:" << endl;
+	cout << "Average Turns Waited By Passengers:" <<avgWT <<" Turns" <<  endl;
 }
 

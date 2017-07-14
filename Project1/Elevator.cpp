@@ -37,19 +37,58 @@ void Elevator::setDirection(int direction_) {
 }
 //called by sim interface. adds pick up request to directional vector
 void Elevator::called(int floor_, int callDirection){
+     bool duplicate = false;
 	//add floor to proper list
 	if (callDirection == 1) {
-		upList.push_back(floor_);
-		if (callDirection == direction) {
-			checkUkUp();
-		}
+        if (!upList.empty()){
+            
+            for (list<int>::iterator it = upList.begin(); it != upList.end();) {
+                if (*it == floor_){
+                    duplicate = true;
+                    break;
+                }
+                else
+                    ++it;
+
+            }
+            if (duplicate ==false){
+                upList.push_back(floor_);
+                if (callDirection == direction) {
+                    checkUkUp();
+                    }
+                }
+            }
+        else{
+            upList.push_back(floor_);
+            if (callDirection == direction) {
+                checkUkUp();
+            }
+        }
 	}
 	else if (callDirection ==-1){
-		downList.push_back(floor_);
-			if (callDirection == direction) {
-				checkUkDown();
-			}
-		}
+        if (!downList.empty()){
+            for (list<int>::iterator it = downList.begin(); it != downList.end();) {
+                if (*it == floor_){
+                    duplicate = true;
+                    break;
+                }
+                else
+                    ++it;
+            }
+            if (duplicate == false){
+                downList.push_back(floor_);
+                if (callDirection == direction) {
+                    checkUkDown();
+                    }
+                }
+            }
+        else{
+            downList.push_back(floor_);
+            if (callDirection == direction) {
+                checkUkDown();
+            }
+        }
+    }
 }
 void Elevator::queuePushUp(){
 		upList.sort();
@@ -93,9 +132,11 @@ void Elevator::moveDown(){
 void Elevator::goToFloor(int floor_) {
 	if (floor_ > currentFloor) {
 		upList.push_back(floor_);
+        checkUkUp();
 	}
 	else {
 		downList.push_back(floor_);
+        checkUkDown();
 	}
 }
 
@@ -103,6 +144,7 @@ void Elevator::goToFloor(int floor_) {
 void Elevator::checkUkUp() {
 	for (list<int>::iterator it = upList.begin(); it != upList.end();) {
 		if (*it >= currentFloor) {
+            // if !eQueue.find(*it)
 			eQueue.push_back(*it);
 			eQueue.sort();
 			it = upList.erase(it);
@@ -116,6 +158,7 @@ void Elevator::checkUkUp() {
 void Elevator::checkUkDown() {
 	for (list<int>::iterator it = downList.begin(); it != downList.end();) {
 		if (*it <= currentFloor) {
+             // if !eQueue.find(*it)
 			eQueue.push_back(*it);
 			eQueue.sort(std::greater<int>());
 			it = downList.erase(it);

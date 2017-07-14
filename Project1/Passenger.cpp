@@ -11,7 +11,11 @@ Passenger::Passenger(int startFloor_, int endFloor_, int direction_){
 void Passenger::addTurn(){
 	turns++;
     }
-
+void Passenger::loadPassenger(){
+    if (pickedUp == false){
+        pickedUp = true;
+    }
+}
 //Getters
 int Passenger::getTurns(){
     return turns;
@@ -27,4 +31,7 @@ int Passenger::getEndFloor(){
 
 int Passenger::getDirection(){
     return direction;
+}
+bool Passenger::getPickedUp(){
+    return pickedUp;
 }

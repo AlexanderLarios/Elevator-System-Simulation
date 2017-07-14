@@ -13,12 +13,15 @@ private:
 	int start;
 	int end;
     int spawnRate;
+    int totalTurns= 0;
+    int PassengersDelivered =0;
+    int avgWT;
 	std::list<Passenger> passengers;
 	Elevator elevator = Elevator(floors, 1);
 
 public:
     Simulation(int floors_, int maxTurns_, int spawnRate_);
-	//void addTurns();
+	void addTurns();
 	int getWaitTime();
     void simulate();
     bool spawnPassenger ();
