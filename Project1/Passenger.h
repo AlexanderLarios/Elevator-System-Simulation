@@ -2,16 +2,17 @@
 class Passenger{
 //Private members
 private:
-    int turns;
+    int turns=0;
     int direction;
     int startFloor;
     int endFloor;
-    bool pickedUp;
+    bool pickedUp = false;
 //Public Members
 public:
     //constructor
     Passenger(int defaultFloor, int finalFloor, int direction_);
     void addTurn();
+    void loadPassenger();
     //getter
     int getTurns();
     int getStartFloor();

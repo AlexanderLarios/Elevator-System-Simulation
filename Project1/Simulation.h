@@ -13,8 +13,8 @@ private:
 	int start;
 	int end;
     int spawnRate;
-    int totalTurns;
-    int PassengersDelivered;
+    int totalTurns= 0;
+    int PassengersDelivered =0;
     int avgWT;
 	std::list<Passenger> passengers;
 	Elevator elevator = Elevator(floors, 1);
